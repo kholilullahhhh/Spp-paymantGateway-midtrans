@@ -67,11 +67,9 @@ class AdminController extends Controller
         });
 
         // Data Guru
-        $datas = Guru::orderByDesc('id')->get();
 
         return view('pages.admin.dashboard.index', [
             'menu' => 'dashboard',
-            'datas' => $datas,
             'totalUsers' => $totalUsers,
             'totalTeachers' => $totalTeachers,
             'totalAdmin' => $totalAdmin,

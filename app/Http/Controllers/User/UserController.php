@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Agenda;
 use App\Models\Artikel;
-use App\Models\Berita;
+use App\Models\Modul;
 
 
 class UserController extends Controller
@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         $datas = array(
-            'berita' => Berita::orderByDesc('id')->skip(0)->take(10)->get(),
+            'modul' => Modul::orderByDesc('id')->skip(0)->take(10)->get(),
             'agenda' => Agenda::orderByDesc('id')->skip(0)->take(10)->get(),
             'artikel' => Artikel::orderByDesc('id')->skip(0)->take(10)->get(),
         );
@@ -36,9 +36,9 @@ class UserController extends Controller
     public function detail($jenis, $id)
     {
         // dd($jenis);
-        if ($jenis == 'berita') {
-            $data = Berita::find($id);
-            $latest_post = Berita::orderByDesc('id')->skip(0)->take(5)->get();
+        if ($jenis == 'modul') {
+            $data = Modul::find($id);
+            $latest_post = Modul::orderByDesc('id')->skip(0)->take(5)->get();
         } else if ($jenis == 'artikel') {
             $data = Artikel::find($id);
             $latest_post = Artikel::orderByDesc('id')->skip(0)->take(5)->get();

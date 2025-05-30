@@ -131,6 +131,17 @@ Route::group(
                 Route::post('/hapus/{id}', 'SiswaController@destroy')->name('siswa.hapus');
             });
 
+            // spp
+            Route::prefix('spp')->group(function () {
+                Route::get('/', 'SppController@index')->name('spp.index');
+                Route::get('/create', 'SppController@create')->name('spp.create');
+                Route::post('/store', 'SppController@store')->name('spp.store');
+                Route::get('/edit/{id}', 'SppController@edit')->name('spp.edit');
+                Route::put('/update', 'SppController@update')->name('spp.update');
+                Route::delete('/hapus/{id}', 'SppController@destroy')->name('spp.hapus');
+            });
+
+
 
             // Akun
             Route::prefix('akun')->group(function () {

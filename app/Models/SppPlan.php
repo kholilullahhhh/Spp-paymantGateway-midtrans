@@ -9,8 +9,9 @@ class SppPlan extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'year',
-        'amount',
+        'tahun',
+        'semester',
+        'nominal',
     ];
 
     public function payments()

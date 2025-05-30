@@ -14,7 +14,8 @@
                     <div class="row align-items-center h-100">
                         <div class="col-md-12 text-center">
                             <h2 class="slide-title" data-animation-in="slideInLeft">Selamat Datang di</h2>
-                            <h3 class="slide-sub-title" data-animation-in="slideInRight">Rencana Pelaksanaan <br> Pembelajaran Harian
+                            <h3 class="slide-sub-title" data-animation-in="slideInRight">Rencana Pelaksanaan <br>
+                                Pembelajaran Harian
                             </h3>
                             <p data-animation-in="slideInLeft" data-duration-in="1.2">
                                 {{-- <a href="services.html" class="slider btn btn-primary">Our Services</a>
@@ -33,7 +34,8 @@
                         <div class="col-md-12">
                             <h2 class="slide-title-box" data-animation-in="slideInDown">Siap Melayani Anda</h2>
                             <h3 class="slide-title" data-animation-in="fadeIn">Dedikasi Kami untuk Anda</h3>
-                            <h3 class="slide-sub-title" data-animation-in="slideInLeft">Rencana Pelaksanaan Pembelajaran Harian</h3>
+                            <h3 class="slide-sub-title" data-animation-in="slideInLeft">Rencana Pelaksanaan Pembelajaran
+                                Harian</h3>
                             <p data-animation-in="slideInRight">
                                 {{-- <a href="services.html" class="slider btn btn-primary border">Pelayanan Kami</a> --}}
                             </p>
@@ -204,16 +206,16 @@
                 </div><!-- Col end -->
 
                 <!-- <div class="col-lg-6 mt-4 mt-lg-4 justify-content-center">
-                        <h3 class="into-sub-title"> </h3>
-                        <div class="box-video"> -->
+                            <h3 class="into-sub-title"> </h3>
+                            <div class="box-video"> -->
 
                 <!--<iframe width="420" height="315" title="Program Pengembangan keprofesian Guru. Pendidikan Jasmani, olahraga dan kesehatan" src="https://www.youtube.com/embed/gJ3g7xX9O-s"-->
                 <!--    allowfullscreen>-->
                 <!--</iframe>-->
                 <!-- <div class="video-placeholder" data-src="https://www.youtube.com"
-                                onclick="loadVideo(this)">
-                                <div class="video-title">Rencana Pelaksanaan Pembelajaran</div>
-                            </div> -->
+                                    onclick="loadVideo(this)">
+                                    <div class="video-title">Rencana Pelaksanaan Pembelajaran</div>
+                                </div> -->
                 <!--<div class="video-title">Balai Besar Guru Penggerak</div>-->
             </div>
             <!--/ Accordion end -->
@@ -341,7 +343,7 @@
             <div class="row text-center">
                 <div class="col-12">
                     <h2 class="section-title">RPPH Sul-Sel</h2>
-                    <h3 class="section-sub-title">Berita Terkini</h3>
+                    <h3 class="section-sub-title">Modul Terkini</h3>
                 </div>
             </div>
             <!--/ Title row end -->
@@ -349,30 +351,30 @@
                 use Illuminate\Support\Str;
             @endphp
             <div class="row my-posts-slider">
-                @foreach ($datas['berita'] as $v)
+                @foreach ($datas['modul'] as $v)
                     <div class="col-lg-4 col-md-6 mb-5">
                         <div class="ts-service-box">
                             <div class="ts-service-image-wrapper">
-                                <img loading="lazy" class="w-100" src="{{ asset('upload/berita/' . $v->thumbnail) }}"
-                                    alt="thumbnail berita" title="{{ $v->thumbnail }}">
+                                <img loading="lazy" class="w-100" src="{{ asset('upload/modul/' . $v->sampul) }}"
+                                    alt="thumbnail artikel" title="{{ $v->sampul }}">
                             </div>
                             <div class="d-flex">
                                 <div class="ts-service-info">
                                     <h3 class="service-box-title"><a
-                                            href="{{ route('user.detail.post', ['jenis' => 'berita', 'id' => $v->id]) }}">{{ $v->judul }}</a>
+                                            href="{{ route('user.detail.post', ['jenis' => 'modul', 'id' => $v->id]) }}">{{ $v->judul }}</a>
                                     </h3>
                                     <p>
                                         {{ Str::limit(strip_tags($v->isi), 120, '...') }}
-                                        {{-- {!! Str::limit($v->isi, 150, '...') !!} --}}
                                     </p>
                                     <a class="learn-more d-inline-block"
-                                        href="{{ route('user.detail.post', ['jenis' => 'berita', 'id' => $v->id]) }}"
-                                        aria-label="service-details"><i class="fa fa-caret-right"></i> Detail...</a>
+                                        href="{{ route('user.detail.post', ['jenis' => 'modul', 'id' => $v->id]) }}"
+                                        aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
                                 </div>
                             </div>
                         </div><!-- Service1 end -->
                     </div><!-- Col 1 end -->
                 @endforeach
+
 
 
 
@@ -461,7 +463,7 @@
                     setlocale(LC_ALL, 'IND');
 
                     $tgl_kegiatan = strftime('%d %B %Y', strtotime($v->tgl_kegiatan));
-                                                        ?>
+                                                                        ?>
                                                 <i class="fa fa-clock-o"></i> {{ $tgl_kegiatan }}
                                             </span>
                                         </div>
@@ -510,7 +512,7 @@
                     });
 
                     lazyVideos.forEach(function (video) {
-                                lazyVideoObserv er.observe(video);
+                                        lazyVideoObserv er.observe(video);
                     });
                 } else {
                     // Fallback for older browsers

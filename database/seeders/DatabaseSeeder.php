@@ -24,9 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(KelasSeeder::class);
         $this->call(SiswaSeeder::class);
-        $this->call(GuruSeeder::class);
         $this->call(AgendaSeeder::class);
-        // $this->call(BeritaSeeder::class);
         $this->call(ModulSeeder::class);
     }
 }
