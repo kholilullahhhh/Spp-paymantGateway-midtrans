@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Data Siswa'])
+@extends('layouts.app', ['title' => 'Data Kelas'])
 
 @section('content')
     @push('styles')
@@ -9,7 +9,7 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Data Siswa</h1>
+                <h1>Data Kelas</h1>
             </div>
 
             <div class="section-body">
@@ -17,37 +17,29 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <a href="{{ route('siswa.create') }}" class="btn btn-primary my-4">
-                                    <i class="fas fa-plus"></i> Tambah Data Siswa
+                                <a href="{{ route('kelas.create') }}" class="btn btn-primary my-4">
+                                    <i class="fas fa-plus"></i> Tambah Data Kelas
                                 </a>
                                 <div class="table-responsive">
-                                    <table class="table table-striped" id="table-siswa">
+                                    <table class="table table-striped" id="table-kelas">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nama</th>
-                                                <th>Kelas</th>
-                                                <th>NISN</th>
-                                                <th>NIS</th>
-                                                <th>Alamat</th>
+                                                <th>Nama Kelas</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($datas as $index => $siswa)
+                                            @foreach ($datas as $index => $kelas)
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
-                                                    <td>{{ $siswa->user->name }}</td>
-                                                    <td>{{ $siswa->class->name ?? '-' }}</td>
-                                                    <td>{{ $siswa->nisn }}</td>
-                                                    <td>{{ $siswa->nis }}</td>
-                                                    <td>{{ $siswa->address ?? '-' }}</td>
+                                                    <td>{{ $kelas->name }}</td>
                                                     <td class="d-flex">
-                                                        <a href="{{ route('siswa.edit', $siswa->id) }}"
+                                                        <a href="{{ route('kelas.edit', $kelas->id) }}"
                                                             class="btn btn-warning btn-sm mr-2">
                                                             <i class="fas fa-edit"></i>
                                                         </a>
-                                                        <form action="{{ route('siswa.hapus', $siswa->id) }}" method="POST"
+                                                        <form action="{{ route('kelas.hapus', $kelas    ->id) }}" method="POST"
                                                             class="d-inline">
                                                             @csrf
                                                             @method('delete')
@@ -75,7 +67,7 @@
         <script src="{{ asset('library/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
         <script>
             $(document).ready(function () {
-                $('#table-siswa').DataTable();
+                $('#table-kelas').DataTable();
             });
 
             function deleteData(id, endpoint) {
@@ -96,7 +88,6 @@
                     });
                 }
             }
-
         </script>
     @endpush
 @endsection

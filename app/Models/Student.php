@@ -23,7 +23,7 @@ class Student extends Model
 
     public function class()
     {
-        return $this->belongsTo(Classes::class, 'class_id');
+        return $this->belongsTo(Classes::class, 'class_id', 'id');
     }
 
     public function payments()

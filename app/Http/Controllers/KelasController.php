@@ -3,23 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Student;
 use App\Models\Classes;
-use App\Models\Kelas;
-use App\Models\Guru;
 
-class SiswaController extends Controller
+
+class KelasController extends Controller
 {
-    private $menu = 'siswa';
+       private $menu = 'kelas';
 
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $datas = Student::with(['class', 'payments', 'user'])->get();
+        $datas = Classes::get();
         $menu = $this->menu;
-        return view('pages.admin.siswa.index', compact('menu', 'datas'));
+        return view('pages.admin.kelas.index', compact('menu', 'datas'));
     }
 
     /**
@@ -28,8 +26,7 @@ class SiswaController extends Controller
     public function create()
     {
         $menu = $this->menu;
-        $kelas = Classes::all();
-        return view('pages.admin.siswa.create', compact('menu', 'kelas'));
+        return view('pages.admin.kelas.create', compact('menu'));
     }
 
     /**
@@ -42,10 +39,9 @@ class SiswaController extends Controller
         // dd($r);
 
         // Menyimpan data guru
-        // dd($r);
-        Student::create($r);
+        Classes::create($r);
 
-        return redirect()->route('siswa.index')->with('message', 'Data guru berhasil ditambahkan.');
+        return redirect()->route('kelas.index')->with('message', 'Data guru berhasil ditambahkan.');
     }
 
 
@@ -54,11 +50,10 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        $data = Student::findOrFail($id);
-        $kelas = Classes::all();
+        $data = Classes::findOrFail($id);
         $menu = $this->menu;
 
-        return view('pages.admin.siswa.edit', compact('data', 'kelas', 'menu'));
+        return view('pages.admin.kelas.edit', compact('data', 'menu'));
     }
 
     /**
@@ -67,12 +62,12 @@ class SiswaController extends Controller
     public function update(Request $request)
     {
         $r = $request->all();
-        $data = Student::find($r['id']);
+        $data = Classes::find($r['id']);
 
         // dd($r);
         $data->update($r);
 
-        return redirect()->route('siswa.index')->with('message', 'Data guru berhasil diperbarui.');
+        return redirect()->route('kelas.index')->with('message', 'Data guru berhasil diperbarui.');
     }
 
 
@@ -81,10 +76,9 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $data = Student::findOrFail($id);
+        $data = Classes::find($id);
         $data->delete();
-        return redirect()->route('siswa.index')->with('message', 'Data guru berhasil dihapus.');
 
-        // return response()->json(['message' => 'Data siswa berhasil dihapus.']);
+        return redirect()->route('kelas.index')->with('message', 'Data guru berhasil dihapus.');
     }
 }

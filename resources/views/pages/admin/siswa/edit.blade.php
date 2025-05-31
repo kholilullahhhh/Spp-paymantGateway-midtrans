@@ -22,11 +22,11 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="nama">Nama Lengkap</label>
-                                        <input type="text" name="nama" id="nama" 
-                                            value="{{ old('nama', $data->nama) }}"
-                                            class="form-control @error('nama') is-invalid @enderror">
-                                        @error('nama')
+                                        <label for="user_id">User ID</label>
+                                        <input type="text" name="user_id" id="user_id" 
+                                            value="{{ old('user_id', $data->user_id) }}"
+                                            class="form-control @error('user_id') is-invalid @enderror">
+                                        @error('user_id')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -49,41 +49,31 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="tgl_lahir">Tanggal Lahir</label>
-                                        <input type="date" name="tgl_lahir" id="tgl_lahir" 
-                                            value="{{ old('tgl_lahir', $data->tgl_lahir) }}"
-                                            class="form-control @error('tgl_lahir') is-invalid @enderror">
-                                        @error('tgl_lahir')
+                                        <label for="nisn">NISN</label>
+                                        <input type="text" name="nisn" id="nisn" 
+                                            value="{{ old('nisn', $data->nisn) }}"
+                                            class="form-control @error('nisn') is-invalid @enderror">
+                                        @error('nisn')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="alamat">Alamat</label>
-                                        <textarea name="alamat" id="alamat" 
-                                            class="form-control @error('alamat') is-invalid @enderror"
-                                            rows="3">{{ old('alamat', $data->alamat) }}</textarea>
-                                        @error('alamat')
+                                        <label for="nis">NIS</label>
+                                        <input type="text" name="nis" id="nis" 
+                                            value="{{ old('nis', $data->nis) }}"
+                                            class="form-control @error('nis') is-invalid @enderror">
+                                        @error('nis')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="wali">Wali</label>
-                                        <input type="text" name="wali" id="wali" 
-                                            value="{{ old('wali', $data->wali) }}"
-                                            class="form-control @error('wali') is-invalid @enderror">
-                                        @error('wali')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="no_hp_wali">No. HP Wali</label>
-                                        <input type="text" name="no_hp_wali" id="no_hp_wali" 
-                                            value="{{ old('no_hp_wali', $data->no_hp_wali) }}"
-                                            class="form-control @error('no_hp_wali') is-invalid @enderror">
-                                        @error('no_hp_wali')
+                                        <label for="address">Alamat</label>
+                                        <textarea name="address" id="address" 
+                                            class="form-control @error('address') is-invalid @enderror"
+                                            rows="3">{{ old('address', $data->address) }}</textarea>
+                                        @error('address')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>

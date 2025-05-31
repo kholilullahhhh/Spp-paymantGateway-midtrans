@@ -1,4 +1,5 @@
-@extends('layouts.app', ['title' => 'Data Siswa'])
+@extends('layouts.app', ['title' => 'Tambah Data Siswa'])
+
 @section('content')
 @push('styles')
     <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.css') }}">
@@ -34,98 +35,54 @@
                                     </div>
                                 @endif
 
+                                <!-- User ID -->
                                 <div class="form-group row">
-                                    <label class="col-form-label col-md-3">Nama Lengkap</label>
+                                    <label class="col-form-label col-md-3">User ID</label>
                                     <div class="col-md-7">
-                                        <input required type="text" name="nama" class="form-control"
-                                            value="{{ old('nama') }}">
+                                        <input required type="text" name="user_id" class="form-control" value="{{ old('user_id') }}">
                                     </div>
                                 </div>
 
+                                <!-- Kelas -->
                                 <div class="form-group row">
                                     <label class="col-form-label col-md-3">Kelas</label>
                                     <div class="col-md-7">
-                                        <select class="form-control selectric" name="kelas_id" required>
+                                        <select class="form-control selectric" name="class_id" required>
                                             <option value="">--- Pilih Kelas ---</option>
                                             @foreach ($kelas as $item)
-                                                <option value="{{ $item->id }}" {{ old('kelas_id') == $item->id ? 'selected' : '' }}>
-                                                    {{ $item->nm_kelas }}
+                                                <option value="{{ $item->id }}" {{ old('class_id') == $item->id ? 'selected' : '' }}>
+                                                    {{ $item->name }}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
 
+                                <!-- NISN -->
                                 <div class="form-group row">
-                                    <label class="col-form-label col-md-3">Tempat Lahir</label>
+                                    <label class="col-form-label col-md-3">NISN</label>
                                     <div class="col-md-7">
-                                        <input required type="text" name="tempat_lahir" class="form-control"
-                                            value="{{ old('tempat_lahir') }}">
+                                        <input required type="text" name="nisn" class="form-control" value="{{ old('nisn') }}">
                                     </div>
                                 </div>
 
+                                <!-- NIS -->
                                 <div class="form-group row">
-                                    <label class="col-form-label col-md-3">Tanggal Lahir</label>
+                                    <label class="col-form-label col-md-3">NIS</label>
                                     <div class="col-md-7">
-                                        <input required type="date" name="tgl_lahir" class="form-control"
-                                            value="{{ old('tgl_lahir') }}">
+                                        <input required type="text" name="nis" class="form-control" value="{{ old('nis') }}">
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label class="col-form-label col-md-3">Gender</label>
-                                    <div class="col-md-7">
-                                        <select class="form-control selectric" name="gender" required>
-                                            <option value="">--- Pilih Gender ---</option>
-                                            <option value="Laki-laki" {{ old('gender') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                            <option value="Perempuan" {{ old('gender') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-form-label col-md-3">Agama</label>
-                                    <div class="col-md-7">
-                                        <select class="form-control selectric" name="agama" required>
-                                            <option value="">--- Pilih Agama ---</option>
-                                            <option value="Islam" {{ old('agama') == 'Islam' ? 'selected' : '' }}>Islam
-                                            </option>
-                                            <option value="Kristen" {{ old('agama') == 'Kristen' ? 'selected' : '' }}>
-                                                Kristen</option>
-                                            <option value="Katolik" {{ old('agama') == 'Katolik' ? 'selected' : '' }}>
-                                                Katolik</option>
-                                            <option value="Hindu" {{ old('agama') == 'Hindu' ? 'selected' : '' }}>Hindu
-                                            </option>
-                                            <option value="Budha" {{ old('agama') == 'Budha' ? 'selected' : '' }}>Budha
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-
+                                <!-- Alamat -->
                                 <div class="form-group row">
                                     <label class="col-form-label col-md-3">Alamat</label>
                                     <div class="col-md-7">
-                                        <textarea required name="alamat"
-                                            class="form-control">{{ old('alamat') }}</textarea>
+                                        <textarea required name="address" class="form-control">{{ old('address') }}</textarea>
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label class="col-form-label col-md-3">Nama Orang tua/ wali</label>
-                                    <div class="col-md-7">
-                                        <textarea required name="wali"
-                                            class="form-control">{{ old('wali') }}</textarea>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label class="col-form-label col-md-3">Nomor Handphone</label>
-                                    <div class="col-md-7">
-                                        <input required type="text" name="no_hp_wali" class="form-control"
-                                            value="{{ old('no_hp_wali') }}">
-                                    </div>
-                                </div>
-
+                                <!-- Submit Button -->
                                 <div class="form-group row">
                                     <div class="col-md-7 offset-md-3">
                                         <button class="btn btn-primary">Simpan</button>

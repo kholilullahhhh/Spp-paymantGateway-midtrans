@@ -128,7 +128,8 @@ Route::group(
                 Route::post('/store', 'SiswaController@store')->name('siswa.store');
                 Route::get('/edit/{id}', 'SiswaController@edit')->name('siswa.edit');
                 Route::put('/update', 'SiswaController@update')->name('siswa.update');
-                Route::post('/hapus/{id}', 'SiswaController@destroy')->name('siswa.hapus');
+                // Route::post('/hapus/{id}', 'SiswaController@destroy')->name('siswa.hapus');
+                Route::delete('/hapus/{id}', 'SiswaController@destroy')->name('siswa.hapus');
             });
 
             // spp
@@ -141,6 +142,15 @@ Route::group(
                 Route::delete('/hapus/{id}', 'SppController@destroy')->name('spp.hapus');
             });
 
+            // Kelas
+            Route::prefix('kelas')->group(function () {
+                Route::get('/', 'KelasController@index')->name('kelas.index');
+                Route::get('/create', 'KelasController@create')->name('kelas.create');
+                Route::post('/store', 'KelasController@store')->name('kelas.store');
+                Route::get('/edit/{id}', 'KelasController@edit')->name('kelas.edit');
+                Route::put('/update', 'KelasController@update')->name('kelas.update');
+                Route::delete('/hapus/{id}', 'KelasController@destroy')->name('kelas.hapus');
+            });
 
 
             // Akun
