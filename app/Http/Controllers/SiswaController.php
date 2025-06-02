@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Classes;
+use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Guru;
 
@@ -29,7 +30,8 @@ class SiswaController extends Controller
     {
         $menu = $this->menu;
         $kelas = Classes::all();
-        return view('pages.admin.siswa.create', compact('menu', 'kelas'));
+        $user = User::where('role', 'siswa')->get();
+        return view('pages.admin.siswa.create', compact('menu', 'kelas', 'user'));
     }
 
     /**
