@@ -18,7 +18,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $datas = Student::with(['class', 'payments', 'user'])->get();
+        $datas = User::where('role', 'siswa')->with(['class', 'spp'])->get();
         $menu = $this->menu;
         return view('pages.admin.siswa.index', compact('menu', 'datas'));
     }
@@ -45,7 +45,7 @@ class SiswaController extends Controller
 
         // Menyimpan data guru
         // dd($r);
-        Student::create($r);
+        User::create($r);
 
         return redirect()->route('siswa.index')->with('message', 'Data guru berhasil ditambahkan.');
     }
@@ -56,7 +56,7 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        $data = Student::findOrFail($id);
+        $data = User::findOrFail($id);
         $kelas = Classes::all();
         $menu = $this->menu;
 
@@ -69,7 +69,7 @@ class SiswaController extends Controller
     public function update(Request $request)
     {
         $r = $request->all();
-        $data = Student::find($r['id']);
+        $data = User::find($r['id']);
 
         // dd($r);
         $data->update($r);
@@ -83,7 +83,7 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $data = Student::findOrFail($id);
+        $data = User::findOrFail($id);
         $data->delete();
         return redirect()->route('siswa.index')->with('message', 'Data guru berhasil dihapus.');
 

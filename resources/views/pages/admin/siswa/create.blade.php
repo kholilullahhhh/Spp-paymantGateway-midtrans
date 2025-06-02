@@ -35,22 +35,31 @@
                                         </div>
                                     @endif
 
-                                    <!-- User ID -->
                                     <div class="form-group row">
-                                        <label class="col-form-label col-md-3">Username</label>
+                                        <label class="col-form-label col-md-3">Nama</label>
                                         <div class="col-md-7">
-                                            <select class="form-control selectric" name="user_id" required>
-                                                <option value="">--- Pilih Username ---</option>
-                                                @foreach ($user as $item)
-                                                    <option value="{{ $item->id }}" {{ old('user_id') == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->username }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            <input required type="text" name="name" class="form-control"
+                                                value="{{ old('name') }}">
                                         </div>
                                     </div>
 
-                                    <!-- Kelas -->
+                                    <!-- Username -->
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3">Username</label>
+                                        <div class="col-md-7">
+                                            <input required type="text" name="username" class="form-control"
+                                                value="{{ old('username') }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3">Password</label>
+                                        <div class="col-md-7">
+                                            <input required type="text" name="password" class="form-control"
+                                                value="{{ old('password') }}">
+                                        </div>
+                                    </div>
+
+                                    <!-- Kelas (class_id) -->
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-3">Kelas</label>
                                         <div class="col-md-7">
@@ -83,12 +92,21 @@
                                         </div>
                                     </div>
 
-                                    <!-- Alamat -->
+                                    <!-- Alamat (address) -->
                                     <div class="form-group row">
                                         <label class="col-form-label col-md-3">Alamat</label>
                                         <div class="col-md-7">
                                             <textarea required name="address"
                                                 class="form-control">{{ old('address') }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <!-- No HP (no_hp) -->
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3">Nomor HP</label>
+                                        <div class="col-md-7">
+                                            <input type="number" name="no_hp" class="form-control"
+                                                value="{{ old('no_hp') }}">
                                         </div>
                                     </div>
 

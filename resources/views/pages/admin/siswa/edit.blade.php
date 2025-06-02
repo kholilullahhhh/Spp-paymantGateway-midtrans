@@ -21,62 +21,75 @@
                             <input type="hidden" name="id" value="{{ $data->id }}">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="user_id">User ID</label>
-                                        <input type="text" name="user_id" id="user_id" 
-                                            value="{{ old('user_id', $data->user_id) }}"
-                                            class="form-control @error('user_id') is-invalid @enderror">
-                                        @error('user_id')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+
+                                <div class="form-group row">
+                                        <label class="col-form-label col-md-3">Nama</label>
+                                        <div class="col-md-7">
+                                            <input required type="text" name="name" class="form-control"
+                                                value="{{ old('name', $data->name) }}">
+                                        </div>
+                                    </div>
+                                    <!-- User ID (username) -->
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3">Username</label>
+                                        <div class="col-md-7">
+                                            <input required type="text" name="username" class="form-control"
+                                                value="{{ old('username', $data->username) }}">
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="kelas_id">Kelas</label>
-                                        <select name="kelas_id" id="kelas_id"
-                                            class="form-control select2 @error('kelas_id') is-invalid @enderror">
-                                            <option value="">-- Pilih Kelas --</option>
-                                            @foreach ($kelas as $k)
-                                                <option value="{{ $k->id }}" 
-                                                    {{ old('kelas_id', $data->kelas_id) == $k->id ? 'selected' : '' }}>
-                                                    {{ $k->nm_kelas }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        @error('kelas_id')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                    <!-- Kelas (class_id) -->
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3">Kelas</label>
+                                        <div class="col-md-7">
+                                            <select class="form-control selectric" name="class_id" required>
+                                                <option value="">--- Pilih Kelas ---</option>
+                                                @foreach ($kelas as $item)
+                                                    <option value="{{ $item->id }}" 
+                                                        {{ old('class_id', $data->class_id) == $item->id ? 'selected' : '' }}>
+                                                        {{ $item->name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="nisn">NISN</label>
-                                        <input type="text" name="nisn" id="nisn" 
-                                            value="{{ old('nisn', $data->nisn) }}"
-                                            class="form-control @error('nisn') is-invalid @enderror">
-                                        @error('nisn')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                    <!-- NISN -->
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3">NISN</label>
+                                        <div class="col-md-7">
+                                            <input required type="text" name="nisn" class="form-control"
+                                                value="{{ old('nisn', $data->nisn) }}">
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="nis">NIS</label>
-                                        <input type="text" name="nis" id="nis" 
-                                            value="{{ old('nis', $data->nis) }}"
-                                            class="form-control @error('nis') is-invalid @enderror">
-                                        @error('nis')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                    <!-- NIS -->
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3">NIS</label>
+                                        <div class="col-md-7">
+                                            <input required type="text" name="nis" class="form-control"
+                                                value="{{ old('nis', $data->nis) }}">
+                                        </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="address">Alamat</label>
-                                        <textarea name="address" id="address" 
-                                            class="form-control @error('address') is-invalid @enderror"
-                                            rows="3">{{ old('address', $data->address) }}</textarea>
-                                        @error('address')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                    <!-- Alamat (address) -->
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3">Alamat</label>
+                                        <div class="col-md-7">
+                                            <textarea required name="address"
+                                                class="form-control">{{ old('address', $data->address) }}</textarea>
+                                        </div>
                                     </div>
+
+                                    <!-- No HP (no_hp) -->
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-md-3">Nomor HP</label>
+                                        <div class="col-md-7">
+                                            <input type="number" name="no_hp" class="form-control"
+                                                value="{{ old('no_hp', $data->no_hp) }}">
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="card-footer text-right">

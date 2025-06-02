@@ -30,6 +30,7 @@
                                                 <th>NISN</th>
                                                 <th>NIS</th>
                                                 <th>Alamat</th>
+                                                <th>No Handphone</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -37,11 +38,12 @@
                                             @foreach ($datas as $index => $siswa)
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
-                                                    <td>{{ $siswa->user->name }}</td>
+                                                    <td>{{ $siswa->name }}</td>
                                                     <td>{{ $siswa->class->name ?? '-' }}</td>
                                                     <td>{{ $siswa->nisn }}</td>
                                                     <td>{{ $siswa->nis }}</td>
                                                     <td>{{ $siswa->address ?? '-' }}</td>
+                                                    <td>{{ $siswa->no_hp ?? '-' }}</td>
                                                     <td class="d-flex">
                                                         <a href="{{ route('siswa.edit', $siswa->id) }}"
                                                             class="btn btn-warning btn-sm mr-2">

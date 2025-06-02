@@ -18,11 +18,27 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'spp_id',
+        'class_id',
         'name',
+        'nisn',
+        'nis',
+        'address',
+        'no_hp',
         'username',
         'password',
         'role'
     ];
+
+    public function class()
+    {
+        return $this->belongsTo(Classes::class, 'class_id', 'id');
+    }
+    public function spp()
+    {
+        return $this->belongsTo(SppPlan::class, 'spp_id', 'id');
+    }
+    
 
     /**
      * The attributes that should be hidden for serialization.
