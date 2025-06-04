@@ -1,10 +1,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{route('dashboard') }}">RPPH Makassar</a>
+            <a href="{{route('dashboard') }}">SMK TRIDHARMA MARO</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{route('dashboard') }}">RPPH</a>
+            <a href="{{route('dashboard') }}">SMK TRIDHARMA MARO</a>
         </div>
 
         <ul class="sidebar-menu">
@@ -17,7 +17,7 @@
             </li>
 
             @if (session('role') == 'admin')
-                <li class="nav-item dropdown {{ $menu == 'siswa' || 'jadwal' ? 'active' : '' }}">
+                <li class="nav-item dropdown {{ $menu == 'siswa' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-sitemap"></i>
                         <span>Master Data</span></a>
                     <ul class="dropdown-menu">
@@ -43,23 +43,29 @@
 
 
                 <!-- <li class="nav-item dropdown {{ $menu == 'kegiatan' || $menu == 'peserta' ? 'active' : '' }}">
-                                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-calendar-week"></i>
-                                        <span>Data Kegiatan</span></a>
-                                    <ul class="dropdown-menu">
+                                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-calendar-week"></i>
+                                            <span>Data Kegiatan</span></a>
+                                        <ul class="dropdown-menu">
 
-                                        <li class="{{ $menu == 'kegiatan' ? 'active' : '' }}">
-                                            <a class="nav-link" href="{{ route('kegiatan.index') }}">
-                                                Kegiatan</span>
-                                            </a>
-                                        </li>
+                                            <li class="{{ $menu == 'kegiatan' ? 'active' : '' }}">
+                                                <a class="nav-link" href="{{ route('kegiatan.index') }}">
+                                                    Kegiatan</span>
+                                                </a>
+                                            </li>
 
-                                        <li class="{{ $menu == 'peserta' ? 'active' : '' }}">
-                                            <a class="nav-link" href="{{ route('peserta.index') }}">
-                                                Peserta Kegiatan
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li> -->
+                                            <li class="{{ $menu == 'peserta' ? 'active' : '' }}">
+                                                <a class="nav-link" href="{{ route('peserta.index') }}">
+                                                    Peserta Kegiatan
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li> -->
+
+                <li class="{{ $menu == 'akun' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('akun.index') }}">
+                        <i class="fas fa-wallet"></i> <span>Data Transaksi</span>
+                    </a>
+                </li>
 
 
                 <li class="{{ $menu == 'akun' ? 'active' : '' }}">

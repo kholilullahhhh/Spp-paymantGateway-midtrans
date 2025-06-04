@@ -59,7 +59,7 @@
                                                     class="form-control">
                                                     <option value="">-- Pilih Role Akun --</option>
                                                     <option {{ $datas->role == 'guru' ? 'selected' : '' }}
-                                                        value="guru">Guru</option>
+                                                        value="siswa">Siswa</option>
                                                     <option {{ $datas->role == 'admin' ? 'selected' : '' }}
                                                         value="admin">Admin</option>
                                                 </select>
