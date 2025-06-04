@@ -100,6 +100,8 @@
                                                 class="form-control">{{ old('address') }}</textarea>
                                         </div>
                                     </div>
+                                    
+                                    <input type="hidden" name="role" value="{{ 'siswa' }}">
 
                                     <!-- No HP (no_hp) -->
                                     <div class="form-group row">

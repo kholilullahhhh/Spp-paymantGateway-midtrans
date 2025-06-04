@@ -9,20 +9,20 @@ class Payment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'student_id',
-        'spp_plan_id',
+        'siswa_id',
+        'spp_id',
         'month',
         'payment_date',
         'amount_paid',
         'status',
     ];
 
-    public function student()
+    public function siswa()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function sppPlan()
+    public function spp()
     {
         return $this->belongsTo(SppPlan::class);
     }

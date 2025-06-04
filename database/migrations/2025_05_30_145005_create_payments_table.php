@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained()->onDelete('cascade');
-            $table->foreignId('spp_plan_id')->constrained()->onDelete('cascade');
+            $table->string('siswa_id')->onDelete('cascade');
+            $table->string('spp_id')->onDelete('cascade');
             $table->string('month'); // e.g. Januari, Februari
             $table->date('payment_date')->nullable();
             $table->decimal('amount_paid', 12, 2);

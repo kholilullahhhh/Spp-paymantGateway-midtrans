@@ -26,6 +26,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nama</th>
+                                                <th>Username</th>
                                                 <th>Kelas</th>
                                                 <th>NISN</th>
                                                 <th>NIS</th>
@@ -39,6 +40,7 @@
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
                                                     <td>{{ $siswa->name }}</td>
+                                                    <td>{{ $siswa->username }}</td>
                                                     <td>{{ $siswa->class->name ?? '-' }}</td>
                                                     <td>{{ $siswa->nisn }}</td>
                                                     <td>{{ $siswa->nis }}</td>

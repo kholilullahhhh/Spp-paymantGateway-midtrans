@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Classes;
 use App\Models\User;
-use App\Models\Kelas;
+use App\Models\Admin;
 use App\Models\Guru;
 
 class SiswaController extends Controller
@@ -37,17 +37,31 @@ class SiswaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+
+    // public function store(Request $request)
+    // {
+    //     $r = $request->all();
+    //     // dd($r);
+    //     // Menyimpan data guru
+    //     // dd($r);
+    //     User::create($r);
+    //     return redirect()->route('siswa.index')->with('message', 'Data guru berhasil ditambahkan.');
+    // }
+
+    public function store(Request $r)
     {
+        $cek_username = Admin::where('username', $r->username)->where('role', $r->role)->first();
+        if ($cek_username == null) {
+            // dd($r);
+            $r = $r->all();
+            $r['password'] = bcrypt($r['password']);
+            Admin::create($r);
+            User::create($r);
 
-        $r = $request->all();
-        // dd($r);
-
-        // Menyimpan data guru
-        // dd($r);
-        User::create($r);
-
-        return redirect()->route('siswa.index')->with('message', 'Data guru berhasil ditambahkan.');
+            return redirect()->route('siswa.index')->with('message', 'store');
+        } else {
+            return redirect()->route('siswa.index')->with('message', 'username sudah ada');
+        }
     }
 
 

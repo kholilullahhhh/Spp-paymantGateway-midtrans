@@ -25,7 +25,7 @@ class AdminController extends Controller
     {
         // Total Users
         $totalUsers = User::count();
-        $siswa = Siswa::count();
+        $siswa = User::count();
         $totalTeachers = User::where('role', 'guru')->count();
         $totalAdmin = User::where('role', 'admin')->count();
 
