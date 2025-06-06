@@ -110,16 +110,16 @@ Route::group(
             Route::get('/fetch-sekolah', ['GuruController@index', 'fetchSekolah'])->name('fetchSekolah');
 
             // Guru
-            Route::prefix('guru')->group(function () {
-                Route::get('/', 'guruController@index')->name('guru.index');
-                Route::get('/create', 'guruController@create')->name('guru.create');
-                Route::post('/store', 'guruController@store')->name('guru.store');
-                Route::get('/show', 'guruController@showguru')->name('admin.guru.detail');
-                Route::get('/edit/{id}', 'guruController@edit')->name('guru.edit');
-                Route::put('/update', 'guruController@update')->name('guru.update');
-                Route::post('/hapus/{id}', 'guruController@destroy')->name('guru.hapus');
+            // Route::prefix('guru')->group(function () {
+            //     Route::get('/', 'guruController@index')->name('guru.index');
+            //     Route::get('/create', 'guruController@create')->name('guru.create');
+            //     Route::post('/store', 'guruController@store')->name('guru.store');
+            //     Route::get('/show', 'guruController@showguru')->name('admin.guru.detail');
+            //     Route::get('/edit/{id}', 'guruController@edit')->name('guru.edit');
+            //     Route::put('/update', 'guruController@update')->name('guru.update');
+            //     Route::post('/hapus/{id}', 'guruController@destroy')->name('guru.hapus');
 
-            });
+            // });
 
             // Siswa
             Route::prefix('siswa')->group(function () {
@@ -165,15 +165,15 @@ Route::group(
             });
 
 
-            // jadwal
-            Route::prefix('jadwal')->group(function () {
-                Route::get('/', 'JadwalController@index')->name('jadwal.index');
-                Route::get('/create', 'JadwalController@create')->name('jadwal.create');
-                Route::post('/store', 'JadwalController@store')->name('jadwal.store');
-                Route::get('/edit/{id}', 'JadwalController@edit')->name('jadwal.edit');
-                Route::put('/update', 'JadwalController@update')->name('jadwal.update');
-                Route::post('/hapus/{id}', 'JadwalController@destroy')->name('jadwal.hapus');
-            });
+            // // jadwal
+            // Route::prefix('jadwal')->group(function () {
+            //     Route::get('/', 'JadwalController@index')->name('jadwal.index');
+            //     Route::get('/create', 'JadwalController@create')->name('jadwal.create');
+            //     Route::post('/store', 'JadwalController@store')->name('jadwal.store');
+            //     Route::get('/edit/{id}', 'JadwalController@edit')->name('jadwal.edit');
+            //     Route::put('/update', 'JadwalController@update')->name('jadwal.update');
+            //     Route::post('/hapus/{id}', 'JadwalController@destroy')->name('jadwal.hapus');
+            // });
 
             // Kegiatan
             Route::prefix('kegiatan')->group(function () {
