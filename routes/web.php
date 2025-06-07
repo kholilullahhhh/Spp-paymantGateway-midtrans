@@ -109,17 +109,6 @@ Route::group(
 
             Route::get('/fetch-sekolah', ['GuruController@index', 'fetchSekolah'])->name('fetchSekolah');
 
-            // Guru
-            // Route::prefix('guru')->group(function () {
-            //     Route::get('/', 'guruController@index')->name('guru.index');
-            //     Route::get('/create', 'guruController@create')->name('guru.create');
-            //     Route::post('/store', 'guruController@store')->name('guru.store');
-            //     Route::get('/show', 'guruController@showguru')->name('admin.guru.detail');
-            //     Route::get('/edit/{id}', 'guruController@edit')->name('guru.edit');
-            //     Route::put('/update', 'guruController@update')->name('guru.update');
-            //     Route::post('/hapus/{id}', 'guruController@destroy')->name('guru.hapus');
-
-            // });
 
             // Siswa
             Route::prefix('siswa')->group(function () {
@@ -162,53 +151,6 @@ Route::group(
                 Route::get('/edit/{id}', 'AkunController@edit')->name('akun.edit');
                 Route::put('/update', 'AkunController@update')->name('akun.update');
                 Route::post('/hapus/{id}', 'AkunController@destroy')->name('akun.hapus');
-            });
-
-
-            // // jadwal
-            // Route::prefix('jadwal')->group(function () {
-            //     Route::get('/', 'JadwalController@index')->name('jadwal.index');
-            //     Route::get('/create', 'JadwalController@create')->name('jadwal.create');
-            //     Route::post('/store', 'JadwalController@store')->name('jadwal.store');
-            //     Route::get('/edit/{id}', 'JadwalController@edit')->name('jadwal.edit');
-            //     Route::put('/update', 'JadwalController@update')->name('jadwal.update');
-            //     Route::post('/hapus/{id}', 'JadwalController@destroy')->name('jadwal.hapus');
-            // });
-
-            // Kegiatan
-            Route::prefix('kegiatan')->group(function () {
-                Route::get('/', 'kegiatanController@index')->name('kegiatan.index');
-                Route::get('/create', 'kegiatanController@create')->name('kegiatan.create');
-                Route::post('/store', 'kegiatanController@store')->name('kegiatan.store');
-                Route::get('/edit/{id}', 'kegiatanController@edit')->name('kegiatan.edit');
-                Route::put('/update', 'kegiatanController@update')->name('kegiatan.update');
-                Route::post('/hapus/{id}', 'kegiatanController@destroy')->name('kegiatan.hapus');
-            });
-
-            // Peserta Kegiatan
-            Route::prefix('peserta')->group(function () {
-                Route::get('/', 'PesertaKegiatanController@index')->name('peserta.index');
-                Route::get('/create', 'PesertaKegiatanController@create')->name('peserta.create');
-                Route::post('/store', 'PesertaKegiatanController@store')->name('peserta.store');
-                Route::get('/edit/{id}', 'PesertaKegiatanController@edit')->name('peserta.edit');
-                Route::put('/update', 'PesertaKegiatanController@update')->name('peserta.update');
-                Route::post('/hapus/{id}', 'PesertaKegiatanController@destroy')->name('peserta.hapus');
-                Route::get('/cetak/{id}', 'PesertaKegiatanController@cetak')->name('peserta.cetak');
-                Route::get('/cetakByUser/{id}', 'PesertaKegiatanController@cetakByUser')->name('peserta.cetakByUser')->withoutMiddleware(['ValidasiUser']);
-                Route::get('/export/{id_kegiatan}', 'PesertaKegiatanController@export')->name('peserta.export');
-
-            });
-
-
-            // Master Jabatan Pegawai 
-            Route::prefix('kependudukan')->group(function () {
-                Route::get('/', 'KependudukanController@index')->name('kependudukan.index');
-                Route::get('/create', 'KependudukanController@create')->name('kependudukan.create');
-                Route::post('/store', 'KependudukanController@store')->name('kependudukan.store');
-                Route::get('/edit/{id}', 'KependudukanController@edit')->name('kependudukan.edit');
-                Route::put('/update', 'KependudukanController@update')->name('kependudukan.update');
-                Route::post('/hapus/{id}', 'KependudukanController@hapus')->name('kependudukan.hapus');
-                Route::get('/cetak/{id}', 'KependudukanController@cetak')->name('kependudukan.cetak');
             });
 
 
