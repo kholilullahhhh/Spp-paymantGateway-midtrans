@@ -97,10 +97,20 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $data = User::findOrFail($id);
-        $data->delete();
-        return redirect()->route('siswa.index')->with('message', 'Data guru berhasil dihapus.');
+        try {
+            $user = User::findOrFail($id);
+            $admin = Admin::findOrFail($id);
 
-        // return response()->json(['message' => 'Data siswa berhasil dihapus.']);
+            $user->delete();
+            $admin->delete();
+
+            return redirect()->route('siswa.index')
+                ->with('message', 'Data siswa dan admin berhasil dihapus.');
+
+        } catch (\Exception $e) {
+            return redirect()->route('siswa.index')
+                ->with('error', 'Gagal menghapus data siswa dan admin: ' . $e->getMessage());
+        }
     }
+
 }

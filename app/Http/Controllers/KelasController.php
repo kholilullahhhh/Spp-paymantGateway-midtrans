@@ -8,7 +8,7 @@ use App\Models\Classes;
 
 class KelasController extends Controller
 {
-       private $menu = 'kelas';
+    private $menu = 'kelas';
 
     /**
      * Display a listing of the resource.
@@ -81,4 +81,5 @@ class KelasController extends Controller
 
         return redirect()->route('kelas.index')->with('message', 'Data guru berhasil dihapus.');
     }
+
 }

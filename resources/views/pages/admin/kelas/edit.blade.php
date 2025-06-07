@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Edit Data SPP'])
+@extends('layouts.app', ['title' => 'Edit Data Kelas'])
 
 @section('content')
     @push('styles')
@@ -9,55 +9,30 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Edit Data SPP</h1>
+                <h1>Edit Data Kelas</h1>
             </div>
 
             <div class="section-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <form action="{{ route('spp.update', $data->id) }}" method="POST">
+                        <form action="{{ route('kelas.update', $data->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <input required type="hidden" name="id" value="{{ $data->id }}" class="form-control">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="tahun">Tahun</label>
-                                        <input type="number" name="tahun" id="tahun"
-                                            value="{{ old('tahun', $data->tahun) }}"
-                                            class="form-control @error('tahun') is-invalid @enderror">
-                                        @error('tahun')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="semester">Semester</label>
-                                        <select name="semester" id="semester"
-                                            class="form-control @error('semester') is-invalid @enderror">
-                                            <option value="">-- Pilih Semester --</option>
-                                            <option value="ganjil" {{ old('semester', $data->semester) == 'ganjil' ? 'selected' : '' }}>Ganjil</option>
-                                            <option value="genap" {{ old('semester', $data->semester) == 'genap' ? 'selected' : '' }}>Genap</option>
-                                        </select>
-                                        @error('semester')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="nominal">Nominal</label>
-                                        <input type="number" name="nominal" id="nominal"
-                                            value="{{ old('nominal', $data->nominal) }}"
-                                            class="form-control @error('nominal') is-invalid @enderror">
-                                        @error('nominal')
-                                            <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        <label class="col-form-label col-md-3">Nama</label>
+                                        <div class="col-md-7">
+                                            <input required type="text" name="name" class="form-control"
+                                                value="{{ old('name', $data->name) }}">
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="card-footer text-right">
                                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                                    <a href="{{ route('spp.index') }}" class="btn btn-secondary">Kembali</a>
+                                    <a href="{{ route('kelas.index') }}" class="btn btn-secondary">Kembali</a>
                                 </div>
                             </div>
                         </form>
