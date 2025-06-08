@@ -38,19 +38,23 @@
                                                     <td>{{ $spp->tahun }}</td>
                                                     <td>{{ ucfirst($spp->semester) }}</td>
                                                     <td>Rp {{ number_format($spp->nominal, 0, ',', '.') }}</td>
-                                                    <td class="d-flex">
-                                                        <a href="{{ route('spp.edit', $spp->id) }}"
-                                                            class="btn btn-warning btn-sm mr-2">
-                                                            <i class="fas fa-edit"></i>
-                                                        </a>
-                                                        <form action="{{ route('spp.hapus', $spp->id) }}" method="POST"
-                                                            class="d-inline">
-                                                            @csrf
-                                                            @method('delete')
-                                                            <button class="btn btn-danger">
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </form>
+                                                    <td>
+                                                        <div class="action-buttons">
+                                                            <a href="{{ route('spp.edit', $spp->id) }}"
+                                                                class="btn btn-warning btn-action">
+                                                                <i class="fas fa-edit"></i> Edit
+                                                            </a>
+                                                            <form action="{{ route('spp.hapus', $spp->id) }}" method="POST"
+                                                                class="d-inline delete-form">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="button"
+                                                                    class="btn btn-danger btn-action delete-btn">
+                                                                    <i class="fas fa-trash"></i> Hapus
+                                                                </button>
+                                                            </form>
+
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -66,32 +70,60 @@
     </div>
 
     @push('scripts')
+        <!-- SweetAlert2 from CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.18/dist/sweetalert2.all.min.js"></script>
+
+        <!-- Other scripts -->
         <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('library/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
         <script src="{{ asset('library/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
+
         <script>
             $(document).ready(function () {
-                $('#table-spp').DataTable();
-            });
+                $('#table-kelas').DataTable();
 
-            function deleteData(id, endpoint) {
-                if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
-                    $.ajax({
-                        url: `/${endpoint}/${id}`,
-                        type: 'DELETE',
-                        data: {
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function (response) {
-                            alert('Data berhasil dihapus.');
-                            location.reload();
-                        },
-                        error: function (error) {
-                            alert('Terjadi kesalahan saat menghapus data.');
+                // SweetAlert for delete confirmation
+                $('.delete-btn').click(function (e) {
+                    e.preventDefault();
+                    var form = $(this).closest('form');
+
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: "Data kelas ini akan dihapus secara permanen!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Ya, Hapus!',
+                        cancelButtonText: 'Batal',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();  // Submit the form if confirmed
                         }
                     });
-                }
-            }
+                });
+
+                // Show success message if exists
+                @if(session('message'))
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses!',
+                        text: '{{ session('message') }}',
+                        timer: 3000,
+                        showConfirmButton: true
+                    });
+                @endif
+
+                // Show error message if exists
+                @if(session('error'))
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal!',
+                        text: '{{ session('error') }}',
+                    });
+                @endif
+                                                                                        });
         </script>
     @endpush
 @endsection

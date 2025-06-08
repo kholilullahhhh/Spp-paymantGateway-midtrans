@@ -16,10 +16,15 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
+                            <div class="card-header">
+                                <h4 class="mb-0">Daftar Kelas</h4>
+                                <div class="card-header-action">
+                                    <a href="{{ route('kelas.create') }}" class="btn btn-primary">
+                                        <i class="bi bi-plus-lg"></i> Tambah Kelas
+                                    </a>
+                                </div>
+                            </div>
                             <div class="card-body">
-                                <a href="{{ route('kelas.create') }}" class="btn btn-primary my-4">
-                                    <i class="fas fa-plus"></i> Tambah Data Kelas
-                                </a>
                                 <div class="table-responsive">
                                     <table class="table table-striped" id="table-kelas">
                                         <thead>
@@ -119,7 +124,7 @@
                         text: '{{ session('error') }}',
                     });
                 @endif
-                                        });
+                                                                });
         </script>
     @endpush
 @endsection
