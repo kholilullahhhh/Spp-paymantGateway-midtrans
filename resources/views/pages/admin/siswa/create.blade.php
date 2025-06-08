@@ -1,139 +1,145 @@
 @extends('layouts.app', ['title' => 'Tambah Data Siswa'])
 
 @section('content')
-    @push('styles')
-        <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.css') }}">
-        <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('library/selectric/public/selectric.css') }}">
-        <link rel="stylesheet" href="{{ asset('library/bootstrap-daterangepicker/daterangepicker.css') }}">
-        <link rel="stylesheet" href="{{ asset('library/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
-    @endpush
-
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Tambah Data Siswa</h1>
+                <h1>Tambah Siswa</h1>
+                <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item"><a href="{{ route('siswa.index') }}">Data Siswa</a></div>
+                    <div class="breadcrumb-item active">Tambah Siswa</div>
+                </div>
             </div>
 
             <div class="section-body">
                 <div class="row">
-                    <div class="col-md-12 col-lg-12">
-                        <form action="{{ route('siswa.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>Form Tambah Siswa</h4>
-                                </div>
-                                <div class="card-body">
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Formulir Pendaftaran Siswa</h4>
+                            </div>
+                            <div class="card-body">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger alert-dismissible show fade">
+                                        <div class="alert-body">
+                                            <button class="close" data-dismiss="alert">
+                                                <span>&times;</span>
+                                            </button>
+                                            <ul class="mb-0">
                                                 @foreach ($errors->all() as $error)
                                                     <li>{{ $error }}</li>
                                                 @endforeach
                                             </ul>
                                         </div>
-                                    @endif
+                                    </div>
+                                @endif
 
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-3">Nama</label>
-                                        <div class="col-md-7">
-                                            <input required type="text" name="name" class="form-control"
-                                                value="{{ old('name') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- Username -->
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-3">Username</label>
-                                        <div class="col-md-7">
-                                            <input required type="text" name="username" class="form-control"
-                                                value="{{ old('username') }}">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-3">Password</label>
-                                        <div class="col-md-7">
-                                            <input required type="text" name="password" class="form-control"
-                                                value="{{ old('password') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- Kelas (class_id) -->
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-3">Kelas</label>
-                                        <div class="col-md-7">
-                                            <select class="form-control selectric" name="class_id" required>
-                                                <option value="">--- Pilih Kelas ---</option>
-                                                @foreach ($kelas as $item)
-                                                    <option value="{{ $item->id }}" {{ old('class_id') == $item->id ? 'selected' : '' }}>
-                                                        {{ $item->name }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <!-- NISN -->
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-3">NISN</label>
-                                        <div class="col-md-7">
-                                            <input required type="text" name="nisn" class="form-control"
-                                                value="{{ old('nisn') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- NIS -->
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-3">NIS</label>
-                                        <div class="col-md-7">
-                                            <input required type="text" name="nis" class="form-control"
-                                                value="{{ old('nis') }}">
-                                        </div>
-                                    </div>
-
-                                    <!-- Alamat (address) -->
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-3">Alamat</label>
-                                        <div class="col-md-7">
-                                            <textarea required name="address"
-                                                class="form-control">{{ old('address') }}</textarea>
-                                        </div>
-                                    </div>
+                                <form action="{{ route('siswa.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="role" value="siswa">
                                     
-                                    <input type="hidden" name="role" value="{{ 'siswa' }}">
+                                    <div class="row">
+                                        <!-- Left Column -->
+                                        <div class="col-md-6">
+                                            <!-- Personal Information -->
+                                            <div class="form-group">
+                                                <label>Nama Lengkap <span class="text-danger">*</span></label>
+                                                <input type="text" name="name" class="form-control" 
+                                                    value="{{ old('name') }}" required>
+                                            </div>
 
-                                    <!-- No HP (no_hp) -->
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-md-3">Nomor HP</label>
-                                        <div class="col-md-7">
-                                            <input type="number" name="no_hp" class="form-control"
-                                                value="{{ old('no_hp') }}">
+                                            <div class="form-group">
+                                                <label>Username <span class="text-danger">*</span></label>
+                                                <input type="text" name="username" class="form-control" 
+                                                    value="{{ old('username') }}" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Password <span class="text-danger">*</span></label>
+                                                <input type="password" name="password" class="form-control" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Kelas <span class="text-danger">*</span></label>
+                                                <select class="form-control" name="class_id" required>
+                                                    <option value="">Pilih Kelas</option>
+                                                    @foreach ($kelas as $item)
+                                                        <option value="{{ $item->id }}" {{ old('class_id') == $item->id ? 'selected' : '' }}>
+                                                            {{ $item->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Right Column -->
+                                        <div class="col-md-6">
+                                            <!-- School Information -->
+                                            <div class="form-group">
+                                                <label>NISN <span class="text-danger">*</span></label>
+                                                <input type="text" name="nisn" class="form-control" 
+                                                    value="{{ old('nisn') }}" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>NIS <span class="text-danger">*</span></label>
+                                                <input type="text" name="nis" class="form-control" 
+                                                    value="{{ old('nis') }}" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Nomor HP</label>
+                                                <input type="number" name="no_hp" class="form-control" 
+                                                    value="{{ old('no_hp') }}">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Alamat <span class="text-danger">*</span></label>
+                                                <textarea name="address" class="form-control" rows="3" required>{{ old('address') }}</textarea>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <!-- Submit Button -->
-                                    <div class="form-group row">
-                                        <div class="col-md-7 offset-md-3">
-                                            <button class="btn btn-primary">Simpan</button>
-                                            <a href="{{ route('siswa.index') }}" class="btn btn-warning">Kembali</a>
-                                        </div>
+                                    <div class="form-group text-center mt-4">
+                                        <button type="submit" class="btn btn-primary btn-lg px-5">
+                                            <i class="fas fa-save mr-2"></i> Simpan Data
+                                        </button>
+                                        <a href="{{ route('siswa.index') }}" class="btn btn-secondary btn-lg px-5 ml-2">
+                                            <i class="fas fa-arrow-left mr-2"></i> Kembali
+                                        </a>
                                     </div>
-                                </div>
+                                </form>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-
-    @push('scripts')
-        <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
-        <script src="{{ asset('library/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-        <script src="{{ asset('library/summernote/dist/summernote-bs4.js') }}"></script>
-        <script src="{{ asset('library/upload-preview/upload-preview.js') }}"></script>
-        <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
-        <script src="{{ asset('js/page/forms-advanced-forms.js') }}"></script>
-    @endpush
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('library/cleave.js/dist/cleave.min.js') }}"></script>
+    <script>
+        // Format NISN input
+        new Cleave('input[name="nisn"]', {
+            numericOnly: true,
+            blocks: [10],
+            delimiter: ' '
+        });
+
+        // Format NIS input
+        new Cleave('input[name="nis"]', {
+            numericOnly: true,
+            blocks: [8],
+            delimiter: ' '
+        });
+
+        // Format phone number input
+        new Cleave('input[name="no_hp"]', {
+            phone: true,
+            phoneRegionCode: 'ID'
+        });
+    </script>
+@endpush

@@ -12,9 +12,9 @@
                 <h1>Edit Data Kelas</h1>
             </div>
 
-                        <div class="section-body">
+            <div class="section-body">
                 <div class="row">
-                    <div class="col-md-12 col-lg-8 offset-lg-2">
+                    <div class="col-md-12">
                         <form action="{{ route('kelas.update', $data->id) }}" method="POST">
                             @csrf
                             @method('PUT')

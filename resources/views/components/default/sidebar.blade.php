@@ -80,7 +80,13 @@
 
                             <li class="{{ $menu == 'siswa' ? 'active' : '' }}">
                                 <a class="nav-link" href="{{ route('siswa.index') }}">
-                                    Data Siswa RPPH
+                                    Data Siswa
+                                </a>
+                            </li>
+
+                            <li class="{{ $menu == 'kelas' ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('kelas.index') }}">
+                                    Data Kelas
                                 </a>
                             </li>
 
@@ -92,25 +98,6 @@
                     </li>
 
                 </ul>
-                </li>
-
-                <li class="nav-item dropdown {{ $menu == 'kegiatan' || $menu == 'peserta' ? 'active' : '' }}">
-                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-calendar-week"></i>
-                        <span>Data Kegiatan</span></a>
-                    <ul class="dropdown-menu">
-
-                        <li class="{{ $menu == 'kegiatan' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('kegiatan.index') }}">
-                                Kegiatan</span>
-                            </a>
-                        </li>
-
-                        <li class="{{ $menu == 'peserta' ? 'active' : '' }}">
-                            <a class="nav-link" href="{{ route('peserta.index') }}">
-                                Peserta Kegiatan
-                            </a>
-                        </li>
-                    </ul>
                 </li>
 
 
