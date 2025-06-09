@@ -14,10 +14,12 @@ return new class extends Migration {
             $table->id();
             $table->string('siswa_id')->onDelete('cascade');
             $table->string('spp_id')->onDelete('cascade');
-            $table->string('month'); // e.g. Januari, Februari
-            $table->date('payment_date')->nullable();
-            $table->decimal('amount_paid', 12, 2);
-            $table->enum('status', ['pending', 'paid', 'failed'])->default('pending');
+            $table->timestamp('paid_at')->nullable();
+            $table->string('order_id');
+            $table->string('month');
+            $table->string('year');
+            $table->decimal('amount', 12, 2);
+            $table->enum('status', ['unpaid', 'paid'])->default('unpaid');
             $table->timestamps();
         });
     }

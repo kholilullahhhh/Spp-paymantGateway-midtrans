@@ -41,8 +41,8 @@
                     </ul>
                 </li>
 
-                <li class="{{ $menu == 'akun' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('akun.index') }}">
+                <li class="{{ $menu == 'payment' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('payment.index') }}">
                         <i class="fas fa-wallet"></i> <span>Data Transaksi</span>
                     </a>
                 </li>

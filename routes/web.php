@@ -141,6 +141,16 @@ Route::group(
                 Route::delete('/hapus/{id}', 'KelasController@destroy')->name('kelas.hapus');
             });
 
+            // payment
+            Route::prefix('payment')->group(function () {
+                Route::get('/', 'PaymentController@index')->name('payment.index');
+                Route::get('/create', 'PaymentController@create')->name('payment.create');
+                Route::post('/store', 'PaymentController@store')->name('payment.store');
+                Route::get('/edit/{id}', 'PaymentController@edit')->name('payment.edit');
+                Route::put('/update', 'PaymentController@update')->name('payment.update');
+                Route::delete('/hapus/{id}', 'PaymentController@destroy')->name('payment.hapus');
+            });
+
 
             // Akun
             Route::prefix('akun')->group(function () {

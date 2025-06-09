@@ -11,24 +11,24 @@ class Payment extends Model
     protected $fillable = [
         'siswa_id',
         'spp_id',
+        'paid_at',
+        'order_id',
         'month',
-        'payment_date',
-        'amount_paid',
-        'status',
+        'year',
+        'amount',
+        'status'
+        
     ];
 
     public function siswa()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'siswa_id','id');
     }
 
     public function spp()
     {
-        return $this->belongsTo(SppPlan::class);
+        return $this->belongsTo(SppPlan::class, 'spp_id', 'id');
     }
 
-    public function transaction()
-    {
-        return $this->hasOne(Transaction::class);
-    }
+
 }
