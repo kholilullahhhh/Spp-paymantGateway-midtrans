@@ -35,7 +35,7 @@
                                             @foreach ($datas as $index => $spp)
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
-                                                    <td>{{ $spp->tahun }}</td>
+                                                    <td>{{ $spp->year }}</td>
                                                     <td>{{ ucfirst($spp->semester) }}</td>
                                                     <td>Rp {{ number_format($spp->nominal, 0, ',', '.') }}</td>
                                                     <td>

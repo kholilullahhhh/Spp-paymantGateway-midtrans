@@ -63,11 +63,11 @@
                                                     <option value="">==Pilih Spp Plan==</option>
                                                     @foreach ($spp as $plan)
                                                         <option value="{{ $plan->id }}" 
-                                                            data-amount="{{ $plan->amount }}"
-                                                            data-year="{{ $plan->year }}"
+                                                            data-nominal="{{ $plan->nominal }}"
+                                                            data-tahun="{{ $plan->tahun }}"
                                                             data-semester="{{ $plan->semester }}"
                                                             {{ old('spp_id') == $plan->id ? 'selected' : '' }}>
-                                                            {{ $plan->name }} - Rp{{ number_format($plan->amount, 0, ',', '.') }}
+                                                            {{ $plan->name }} - Rp{{ number_format($plan->nominal, 0, ',', '.') }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -107,7 +107,7 @@
 
                                             <div class="form-group">
                                                 <label>Jumlah Pembayaran <span class="text-danger">*</span></label>
-                                                <input type="number" name="amount" id="amount-input" class="form-control" value="{{ old('amount') }}" required>
+                                                <input type="number" name="amount" id="amount-input" class="form-control" value="{{ old('amount') }}" readonly>
                                             </div>
 
                                             <div class="form-group">
@@ -165,7 +165,7 @@
             $('#spp-select').change(function() {
                 var selectedOption = $(this).find('option:selected');
                 $('#amount-input').val(selectedOption.data('nominal'));
-                $('#year-input').val(selectedOption.data('tahun'));
+                $('#year-input').val(selectedOption.data('year'));
                 $('#semester-input').val(selectedOption.data('semester'));
             });
 

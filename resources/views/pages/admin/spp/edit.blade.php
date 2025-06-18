@@ -23,10 +23,10 @@
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="tahun">Tahun</label>
-                                        <input type="number" name="tahun" id="tahun"
+                                        <input type="number" name="year" id="year"
                                             value="{{ old('tahun', $data->tahun) }}"
-                                            class="form-control @error('tahun') is-invalid @enderror">
-                                        @error('tahun')
+                                            class="form-control @error('year') is-invalid @enderror">
+                                        @error('year')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>

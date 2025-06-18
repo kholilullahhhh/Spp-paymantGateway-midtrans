@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('spp_plans', function (Blueprint $table) {
             $table->id();
-            $table->year('tahun');
+            $table->string('year');
             $table->enum('semester', ['ganjil', 'genap']);
             $table->integer('nominal')->default(0);
             $table->timestamps();

@@ -36,8 +36,8 @@
 
                                 <div class="form-group">
                                     <label>Tahun</label>
-                                    <input type="number" name="tahun" class="form-control" required
-                                           placeholder="Misal: 2025" value="{{ old('tahun') }}">
+                                    <input type="number" name="year" class="form-control" required
+                                           placeholder="Misal: 2025" value="{{ old('year') }}">
                                 </div>
 
                                 <div class="form-group">

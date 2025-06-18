@@ -9,7 +9,7 @@ class SppPlan extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'tahun',
+        'year',
         'semester',
         'nominal',
     ];
