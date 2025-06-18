@@ -39,7 +39,7 @@ class PaymentController extends Controller
             $data['year'] = $sppPlan->year; // Set the year from the selected SPP plan
 
 
-            dd($data);
+            // dd($data);
             Payment::create($data);
         }
         return redirect()->route('payment.index')->with('success', 'Payment created successfully');

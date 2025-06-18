@@ -112,7 +112,7 @@
 
                                             <div class="form-group">
                                                 <label>Tahun <span class="text-danger">*</span></label>
-                                                <input type="text" name="year" id="year-input" class="form-control" value="{{ old('year') }}" required>
+                                                <input type="text" name="year" id="year-input" class="form-control" value="{{ old('year') }}" readonly>
                                             </div>
 
 
@@ -164,8 +164,8 @@
             // When SPP Plan is selected, auto-fill amount, year, and semester
             $('#spp-select').change(function() {
                 var selectedOption = $(this).find('option:selected');
-                $('#amount-input').val(selectedOption.data('nominal'));
                 $('#year-input').val(selectedOption.data('year'));
+                $('#amount-input').val(selectedOption.data('nominal'));
                 $('#semester-input').val(selectedOption.data('semester'));
             });
 
