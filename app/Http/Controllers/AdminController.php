@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Agenda;
-use App\Models\Guru;
-use App\Models\Siswa;
-use App\Models\Student;
 use App\Models\InternalPpnpn;
+use App\Models\Payment;
+use App\Models\Classes;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use Spatie\Activitylog\Models\Activity;
@@ -21,68 +19,74 @@ class AdminController extends Controller
     /**
      * Display a listing of the resource.
      */
-    
-    
-    public function index()
-    {
-        // Total Users
-        $totalUsers = User::count();
-        $siswa = User::count();
-        $totalTeachers = User::where('role', 'guru')->count();
-        $totalAdmin = User::where('role', 'admin')->count();
 
-        // Monthly user registration data
-        $monthlyUsers = [];
-        for ($i = 1; $i <= 12; $i++) {
-            $monthlyUsers[] = User::whereYear('created_at', now()->year)
-                ->whereMonth('created_at', $i)
-                ->count();
+
+    public function index(Request $request)
+    {
+        $selectedYear = $request->year ?? date('Y');
+        $currentMonth = date('n');
+
+        // Get monthly payments data
+        $monthlyPayments = array_fill(1, 12, 0); // Initialize all months with 0
+        $paymentsData = Payment::selectRaw('MONTH(paid_at) as month, SUM(amount) as total')
+            ->whereYear('paid_at', $selectedYear)
+            ->groupBy('month')
+            ->get()
+            ->pluck('total', 'month')
+            ->toArray();
+
+        // Merge with actual data
+        foreach ($paymentsData as $month => $total) {
+            $monthlyPayments[$month] = $total;
         }
 
-        // Upcoming events count
-        $upcomingEvents = Agenda::where('tgl_kegiatan', '>=', Carbon::today())
-            ->where('tgl_kegiatan', '<=', Carbon::today()->addDays(30))
-            ->count();
-
-        // Upcoming events list
-        $upcomingEventList = Agenda::where('tgl_kegiatan', '>=', Carbon::today())
-            ->orderBy('tgl_kegiatan')
-            ->take(5)
-            ->get();
-
-        // Recent activities (using Spatie Activitylog if available)
-        $recentActivities = Agenda::where('tgl_selesai', '>=', Carbon::today())
-            ->orderBy('tgl_selesai', 'asc')
-            ->take(5)
-            ->get();
-
-        // Calendar events
-        $events = Agenda::all()->map(function ($event) {
-            return [
-                'title' => $event->title,
-                'start' => $event->tgl_kegiatan . ' ' . $event->jam_mulai,
-                'end' => $event->tgl_selesai . ' ' . $event->jam_selesai,
-                'description' => $event->description,
-                'color' => '#6777ef',
-                'textColor' => '#fff'
-            ];
+        // Get class progress data
+        $classProgress = Classes::withCount([
+            'students',
+            'payment' => function ($query) use ($selectedYear) {
+                $query->where('status', 'paid')
+                    ->whereYear('paid_at', $selectedYear); // Filter payments for the selected year
+            }
+        ])->get()->map(function ($class) {
+            $class->paid_count = $class->payments_count; // Count of paid students
+            $class->total_students = $class->students_count; // Total number of students
+            $class->percentage = $class->total_students > 0 ?
+                ($class->paid_count / $class->total_students) * 100 : 0; // Calculate percentage
+            return $class;
         });
-
-        // Data Guru
 
         return view('pages.admin.dashboard.index', [
             'menu' => 'dashboard',
-            'totalUsers' => $totalUsers,
-            'totalTeachers' => $totalTeachers,
-            'totalAdmin' => $totalAdmin,
-            'upcomingEvents' => $upcomingEvents,
-            'upcomingEventList' => $upcomingEventList,
-            'recentActivities' => $recentActivities,
-            'siswa' => $siswa,
-            'events' => $events,
-            'monthlyUsers' => $monthlyUsers,
+            'totalStudents' => User::where('role', 'siswa')->count(),
+            'currentMonthPayments' => Payment::whereYear('paid_at', $selectedYear)
+                ->whereMonth('paid_at', $currentMonth)
+                ->sum('amount'),
+            'currentYearPayment' => Payment::whereYear('paid_at', $selectedYear)
+                ->sum('amount'),
+            'paidPayments' => Payment::where('status', 'paid')->whereYear('paid_at', $selectedYear)->count(),
+            'pendingPayments' => Payment::where('status', 'unpaid')->whereYear('paid_at', $selectedYear)->count(),
+            'monthlyPayments' => $monthlyPayments,
+            'paidPercentage' => $this->getPaymentPercentage('paid'),
+            'pendingPercentage' => $this->getPaymentPercentage('pending'),
+            'overduePercentage' => $this->getPaymentPercentage('overdue'),
+            'recentPayments' => Payment::with('siswa')->latest()->take(5)->get(),
+            'classProgress' => $classProgress, // Pass class progress data
+            'selectedYear' => $selectedYear
         ]);
     }
+
+
+    private function getPaymentPercentage($status)
+    {
+        $total = Payment::count();
+        if ($total == 0)
+            return 0;
+
+        return round((Payment::where('status', $status)->count() / $total) * 100, 2);
+    }
+
+
+
 
 
 

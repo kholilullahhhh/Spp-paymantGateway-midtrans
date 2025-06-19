@@ -45,6 +45,14 @@ class PaymentController extends Controller
         return redirect()->route('payment.index')->with('success', 'Payment created successfully');
     }
 
+    public function destroy($id)
+    {
+        $data = Payment::find($id);
+        $data->delete();
+
+        return redirect()->route('payment.index')->with('message', 'Data guru berhasil dihapus.');
+    }
+
 
 
 }

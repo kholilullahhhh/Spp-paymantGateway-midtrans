@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'spp_id',
+        'payment_id',
         'class_id',
         'name',
         'nisn',
@@ -38,6 +39,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(SppPlan::class, 'spp_id', 'id');
     }
+        public function payment()
+    {
+        return $this->hasMany(Payment::class, 'siswa_id', 'id');
+    }
+    
     
 
     /**

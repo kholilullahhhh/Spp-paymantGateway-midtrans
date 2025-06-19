@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('class_id')->nullable()->cascadeOnDelete();
             $table->string('spp_id')->nullable()->cascadeOnDelete();
+            $table->string('payment_id')->nullable()->cascadeOnDelete();
             $table->string('name');
             $table->string('username');
             $table->string('password');
