@@ -14,8 +14,8 @@
                     <div class="row align-items-center h-100">
                         <div class="col-md-12 text-center">
                             <h2 class="slide-title" data-animation-in="slideInLeft">Selamat Datang di</h2>
-                            <h3 class="slide-sub-title" data-animation-in="slideInRight">Rencana Pelaksanaan <br>
-                                Pembelajaran Harian
+                            <h3 class="slide-sub-title" data-animation-in="slideInRight">Sistem Pembayaran SPP <br>
+                                SMK TRIDHARMA MAROS
                             </h3>
                             <p data-animation-in="slideInLeft" data-duration-in="1.2">
                                 {{-- <a href="services.html" class="slider btn btn-primary">Our Services</a>
@@ -34,8 +34,8 @@
                         <div class="col-md-12">
                             <h2 class="slide-title-box" data-animation-in="slideInDown">Siap Melayani Anda</h2>
                             <h3 class="slide-title" data-animation-in="fadeIn">Dedikasi Kami untuk Anda</h3>
-                            <h3 class="slide-sub-title" data-animation-in="slideInLeft">Rencana Pelaksanaan Pembelajaran
-                                Harian</h3>
+                            <h3 class="slide-sub-title" data-animation-in="slideInLeft">Sistem Pembayaran SPP <br>
+                                SMK TRIDHARMA MAROS</h3>
                             <p data-animation-in="slideInRight">
                                 {{-- <a href="services.html" class="slider btn btn-primary border">Pelayanan Kami</a> --}}
                             </p>
@@ -191,7 +191,7 @@
                 <div class="col-lg-12">
                     <div class="ts-intro">
                         <h2 class="into-title">Tentang Kami</h2>
-                        <h3 class="into-sub-title">RPPH Sulawesi Selatan</h3>
+                        <h3 class="into-sub-title">SMK TRIDHARMA MAROS</h3>
                         <p class="my-sub-content">
                             Lorem Ipsum is simply dummy text of the printing and typesetting
                             industry. Lorem Ipsum has been the industry's standard dummy text
@@ -329,151 +329,19 @@
                         </div>
                     </div><!-- Service1 end -->
                 </div><!-- Col 1 end -->
-
-
             </div><!-- Main row end -->
-
-
         </div>
         <!--/ Container end -->
     </section><!-- Service end -->
-
-    <section id="ts-service-area" class="ts-service-area pb-0">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-12">
-                    <h2 class="section-title">RPPH Sul-Sel</h2>
-                    <h3 class="section-sub-title">Modul Terkini</h3>
-                </div>
-            </div>
-            <!--/ Title row end -->
-            @php
-                use Illuminate\Support\Str;
-            @endphp
-            <div class="row my-posts-slider">
-                @foreach ($datas['modul'] as $v)
-                    <div class="col-lg-4 col-md-6 mb-5">
-                        <div class="ts-service-box">
-                            <div class="ts-service-image-wrapper">
-                                <img loading="lazy" class="w-100" src="{{ asset('upload/modul/' . $v->sampul) }}"
-                                    alt="thumbnail artikel" title="{{ $v->sampul }}">
-                            </div>
-                            <div class="d-flex">
-                                <div class="ts-service-info">
-                                    <h3 class="service-box-title"><a
-                                            href="{{ route('user.detail.post', ['jenis' => 'modul', 'id' => $v->id]) }}">{{ $v->judul }}</a>
-                                    </h3>
-                                    <p>
-                                        {{ Str::limit(strip_tags($v->isi), 120, '...') }}
-                                    </p>
-                                    <a class="learn-more d-inline-block"
-                                        href="{{ route('user.detail.post', ['jenis' => 'modul', 'id' => $v->id]) }}"
-                                        aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
-                                </div>
-                            </div>
-                        </div><!-- Service1 end -->
-                    </div><!-- Col 1 end -->
-                @endforeach
-
-
-
-
-            </div><!-- Main row end -->
-
-
-        </div>
-        <!--/ Container end -->
-    </section><!-- Service end -->
-
-
-    <section id="ts-service-area" class="ts-service-area pb-0">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-12">
-                    <h2 class="section-title">RPPH Sul-Sel</h2>
-                    <h3 class="section-sub-title">Artikel Terkini</h3>
-                </div>
-            </div>
-            <!--/ Title row end -->
-
-            <div class="row my-artikel-slider">
-                @foreach ($datas['artikel'] as $v)
-                    <div class="col-lg-4 col-md-6 mb-5">
-                        <div class="ts-service-box">
-                            <div class="ts-service-image-wrapper">
-                                <img loading="lazy" class="w-100" src="{{ asset('upload/artikel/' . $v->thumbnail) }}"
-                                    alt="thumbnail artikel" title="{{ $v->thumbnail }}">
-                            </div>
-                            <div class="d-flex">
-                                <div class="ts-service-info">
-                                    <h3 class="service-box-title"><a
-                                            href="{{ route('user.detail.post', ['jenis' => 'artikel', 'id' => $v->id]) }}">{{ $v->judul }}</a>
-                                    </h3>
-                                    <p>
-                                        {{ Str::limit(strip_tags($v->isi), 120, '...') }}
-                                    </p>
-                                    <a class="learn-more d-inline-block"
-                                        href="{{ route('user.detail.post', ['jenis' => 'artikel', 'id' => $v->id]) }}"
-                                        aria-label="service-details"><i class="fa fa-caret-right"></i> Learn more</a>
-                                </div>
-                            </div>
-                        </div><!-- Service1 end -->
-                    </div><!-- Col 1 end -->
-                @endforeach
-
-
-            </div><!-- Main row end -->
-
-
-        </div>
-        <!--/ Container end -->
-    </section><!-- Service end -->
-
-
 
     <section id="news" class="news">
         <div class="container">
             <div class="row text-center">
                 <div class="col-12">
-                    <h2 class="section-title">RPPH Sul-Sel</h2>
-                    <h3 class="section-sub-title">Agenda Terkini</h3>
                 </div>
             </div>
             <!--/ Title row end -->
 
-            <div class="row my-posts-slider">
-                @foreach ($datas['agenda'] as $v)
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="latest-post">
-                                    <div class="latest-post-media">
-                                        <a href="{{ route('user.detail.post', ['jenis' => 'agenda', 'id' => $v->id]) }}"
-                                            class="latest-post-img">
-                                            <img loading="lazy" class="img-fluid" src="{{ asset('upload/agenda/' . $v->thumbnail) }}"
-                                                alt="thumbnail agenda" title="{{ $v->thumbnail }}">
-                                        </a>
-                                    </div>
-                                    <div class="post-body">
-                                        <h4 class="post-title">
-                                            <a href="{{ route('user.detail.post', ['jenis' => 'agenda', 'id' => $v->id]) }}"
-                                                class="d-inline-block">{{ $v->nama_kegiatan }}</a>
-                                        </h4>
-                                        <div class="latest-post-meta">
-                                            <span class="post-item-date">
-                                                <?php
-                    setlocale(LC_ALL, 'IND');
-
-                    $tgl_kegiatan = strftime('%d %B %Y', strtotime($v->tgl_kegiatan));
-                                                                        ?>
-                                                <i class="fa fa-clock-o"></i> {{ $tgl_kegiatan }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div><!-- Latest post end -->
-                            </div><!-- 1st post col end -->
-                @endforeach
-
-
-            </div>
             <!--/ Content row end -->
 
             {{-- <div class="general-btn text-center mt-4">
@@ -484,6 +352,8 @@
         <!--/ Container end -->
     </section>
     <!--/ News end -->
+
+
     @push('scripts')
         <script>
             function loadVideo(element) {

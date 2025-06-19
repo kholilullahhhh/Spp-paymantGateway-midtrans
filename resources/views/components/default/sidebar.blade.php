@@ -1,10 +1,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="{{route('dashboard') }}">SMK TRIDHARMA MARO</a>
+            <a href="{{route('dashboard') }}">SMK TRIDHARMA MAROS</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{route('dashboard') }}">SMK TRIDHARMA MARO</a>
+            <a href="{{route('dashboard') }}">SMK TRIDHARMA MAROS</a>
         </div>
 
         <ul class="sidebar-menu">
@@ -55,21 +55,7 @@
                 </li>
 
                 <li class="menu-header">Landing Page</li>
-                <li class="nav-item  {{ $menu == 'agenda' ? 'active' : '' }}">
-                    <a href="{{ route('agenda.index') }}" class="nav-link "><i class="fas fa-thumbtack"></i>
-                        <span>Data Agenda</span>
-                    </a>
-                </li>
-                <li class="nav-item  {{ $menu == 'tema' ? 'active' : '' }}">
-                    <a href="{{ route('tema.index') }}" class="nav-link "><i class="fas fa-newspaper"></i>
-                        <span>Data Tema</span>
-                    </a>
-                </li>
-                <li class="nav-item  {{ $menu == 'modul' ? 'active' : '' }}">
-                    <a href="{{ route('modul.index') }}" class="nav-link "><i class="fas fa-window-maximize"></i>
-                        <span>Modul Pembelajaran</span>
-                    </a>
-                </li>
+                
             @endif
 
             @if (session('role') == 'siswa')
@@ -108,29 +94,9 @@
                 </li>
 
                 <li class="menu-header">Landing Page</li>
-                <li class="nav-item  {{ $menu == 'agenda' ? 'active' : '' }}">
-                    <a href="{{ route('agenda.index') }}" class="nav-link "><i class="fas fa-thumbtack"></i>
-                        <span>Data Agenda</span>
-                    </a>
-                </li>
-                <li class="nav-item  {{ $menu == 'tema' ? 'active' : '' }}">
-                    <a href="{{ route('tema.index') }}" class="nav-link "><i class="fas fa-newspaper"></i>
-                        <span>Data Berita</span>
-                    </a>
-                </li>
-                <li class="nav-item  {{ $menu == 'modul' ? 'active' : '' }}">
-                    <a href="{{ route('modul.index') }}" class="nav-link "><i class="fas fa-window-maximize"></i>
-                        <span>Modul Pembelajaran</span>
-                    </a>
-                </li>
+                
             @endif
-
-
-
-
-
         </ul>
-
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
             <a href="{{ route('logout') }}" class="btn btn-danger btn-lg btn-block btn-icon-split">
                 <i class="fas fa-sign-out-alt"></i> Logout
