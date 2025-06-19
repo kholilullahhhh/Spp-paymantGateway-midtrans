@@ -47,7 +47,7 @@
                                                     <td>{{ $payment->siswa->nisn }}</td>
                                                     <td>{{ $payment->siswa->name }}</td>
                                                     <td>{{ $payment->spp->semester }}</td>
-                                                    <td>{{ $payment->year }}</td>
+                                                    <td>{{ $payment->paid_yearyear }}</td>
                                                     <td>{{ number_format($payment->amount, 0, ',', '.') }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($payment->paid_at)->format('d-m-Y') }}</td>
                                                     @if ($payment->status == 'paid')

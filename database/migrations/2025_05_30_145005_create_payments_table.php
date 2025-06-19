@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->string('spp_id')->onDelete('cascade');
             $table->timestamp('paid_at')->nullable();
             $table->string('order_id');
-            $table->string('month');
-            $table->string('year');
+            $table->string('paid_month');
+            $table->string('paid_year');
             $table->decimal('amount', 12, 2);
             $table->enum('status', ['unpaid', 'paid'])->default('unpaid');
             $table->timestamps();

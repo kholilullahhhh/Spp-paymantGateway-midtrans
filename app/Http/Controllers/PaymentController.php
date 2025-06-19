@@ -33,17 +33,18 @@ class PaymentController extends Controller
         $data = $request->all();
         $data['order_id'] = $orderId;
 
-        // Ensure that year is set based on the selected SPP plan
+        // Ensure that paid_year is set based on the selected SPP plan
         if ($request->has('spp_id')) {
             $sppPlan = SppPlan::find($request->spp_id);
-            $data['year'] = $sppPlan->year; // Set the year from the selected SPP plan
-
-
-            // dd($data);
-            Payment::create($data);
+            $data['paid_year'] = $sppPlan->year;  // Set paid_year from the selected SPP plan
         }
+
+        // Save the payment data
+        Payment::create($data);
+
         return redirect()->route('payment.index')->with('success', 'Payment created successfully');
     }
+
 
 
 }

@@ -45,7 +45,7 @@
                                             <div class="form-group">
                                                 <label>NISN <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="siswa_id" id="nisn-select" required>
-                                                    <option value="">==Pilih NISN==</option>
+                                                    <option value="">=== Pilih NISN ===</option>
                                                     @foreach ($siswa as $student)
                                                         <option value="{{ $student->id }}" 
                                                             data-nama="{{ $student->name }}"
@@ -60,11 +60,11 @@
                                             <div class="form-group">
                                                 <label>Spp Plan <span class="text-danger">*</span></label>
                                                 <select class="form-control" name="spp_id" id="spp-select" required>
-                                                    <option value="">==Pilih Spp Plan==</option>
+                                                    <option value="">=== Pilih Spp Plan ===</option>
                                                     @foreach ($spp as $plan)
-                                                        <option value="{{ $plan->id }}" 
+                                                        <option value="{{ $plan->id }}"
                                                             data-nominal="{{ $plan->nominal }}"
-                                                            data-tahun="{{ $plan->tahun }}"
+                                                            data-year="{{ $plan->year }}"
                                                             data-semester="{{ $plan->semester }}"
                                                             {{ old('spp_id') == $plan->id ? 'selected' : '' }}>
                                                             {{ $plan->name }} - Rp{{ number_format($plan->nominal, 0, ',', '.') }}
@@ -75,25 +75,35 @@
 
                                             <div class="form-group">
                                                 <label>Bulan <span class="text-danger">*</span></label>
-                                                <select name="month" class="form-control" required>
+                                                <select name="paid_month" class="form-control" required>
                                                     <option value="">==Pilih Bulan==</option>
-                                                    <option value="January" {{ old('month') == 'January' ? 'selected' : '' }}>
+                                                    <option value="January" {{ old('paid_month') == 'January' ? 'selected' : '' }}>
                                                         Januari</option>
-                                                    <option value="February" {{ old('month') == 'February' ? 'selected' : '' }}>Februari</option>
-                                                    <option value="March" {{ old('month') == 'March' ? 'selected' : '' }}>
+                                                    <option value="February" {{ old('paid_month') == 'February' ? 'selected' : '' }}>Februari</option>
+                                                    <option value="Maret" {{ old('paid_month') == 'March' ? 'selected' : '' }}>
                                                         Maret</option>
-                                                    <option value="April" {{ old('month') == 'April' ? 'selected' : '' }} >
+                                                    <option value="April" {{ old('paid_month') == 'April' ? 'selected' : '' }} >
                                                         April</option>
-                                                    <option value="May" {{ old('month') == 'May' ? 'selected' : '' }}>Mei</option>
-                                                    <option value="June" {{ old('month') == 'June' ? 'selected' : '' }}>Juni</option>
-                                                    <option value="July" {{ old('month') == 'July' ? 'selected' : '' }}>Juli</option>
-                                                    <option value="August" {{ old('month') == 'August' ? 'selected' : '' }}>
+                                                    <option value="Mei" {{ old('paid_month') == 'May' ? 'selected' : '' }}>Mei</option>
+                                                    <option value="Juni" {{ old('paid_month') == 'June' ? 'selected' : '' }}>Juni</option>
+                                                    <option value="Juli" {{ old('paid_month') == 'July' ? 'selected' : '' }}>Juli</option>
+                                                    <option value="Agustus" {{ old('paid_month') == 'August' ? 'selected' : '' }}>
                                                         Agustus</option>
-                                                    <option value="September" {{ old('month') == 'September' ? 'selected' : '' }}>September</option>
-                                                    <option value="October" {{ old('month') == 'October' ? 'selected' : '' }}>
+                                                    <option value="September" {{ old('paid_month') == 'September' ? 'selected' : '' }}>September</option>
+                                                    <option value="Oktober" {{ old('paid_month') == 'October' ? 'selected' : '' }}>
                                                         Oktober</option>
-                                                    <option value="November" {{ old('month') == 'November' ? 'selected' : '' }}>November</option>
-                                                    <option value="December" {{ old('month') == 'December' ? 'selected' : '' }}>Desember</option>
+                                                    <option value="November" {{ old('paid_month') == 'November' ? 'selected' : '' }}>November</option>
+                                                    <option value="Desember" {{ old('paid_month') == 'December' ? 'selected' : '' }}>Desember</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label>Status Pembayaran <span class="text-danger">*</span></label>
+                                                <select name="status" class="form-control" required>
+                                                    <option value="unpaid" {{ old('status') == 'unpaid' ? 'selected' : '' }}>
+                                                        Belum Dibayar</option>
+                                                    <option value="paid" {{ old('status') == 'paid' ? 'selected' : '' }}>Sudah
+                                                        Dibayar</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -106,13 +116,17 @@
                                             </div>
 
                                             <div class="form-group">
+                                                <input type="hidden" name="paid_at" id="paid_at" class="form-control" readonly>
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label>Jumlah Pembayaran <span class="text-danger">*</span></label>
                                                 <input type="number" name="amount" id="amount-input" class="form-control" value="{{ old('amount') }}" readonly>
                                             </div>
 
                                             <div class="form-group">
                                                 <label>Tahun <span class="text-danger">*</span></label>
-                                                <input type="text" name="year" id="year-input" class="form-control" value="{{ old('year') }}" readonly>
+                                                <input type="text" name="paid_year" id="year-input" class="form-control" value="{{ old('paid_year') }}" readonly>
                                             </div>
 
 
@@ -121,15 +135,6 @@
                                                 <input type="text" id="semester-input" class="form-control" readonly>
                                             </div>
 
-                                            <div class="form-group">
-                                                <label>Status Pembayaran <span class="text-danger">*</span></label>
-                                                <select name="status" class="form-control" required>
-                                                    <option value="unpaid" {{ old('status') == 'unpaid' ? 'selected' : '' }}>
-                                                        Belum Dibayar</option>
-                                                    <option value="paid" {{ old('status') == 'paid' ? 'selected' : '' }}>Sudah
-                                                        Dibayar</option>
-                                                </select>
-                                            </div>
                                         </div>
                                     </div>
 
@@ -154,6 +159,10 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+            // Set the current date in the paid_at hidden field
+            var currentDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
+            $('#paid_at').val(currentDate);
+
             // When NISN is selected, auto-fill the student name
             $('#nisn-select').change(function() {
                 var selectedOption = $(this).find('option:selected');
@@ -164,12 +173,12 @@
             // When SPP Plan is selected, auto-fill amount, year, and semester
             $('#spp-select').change(function() {
                 var selectedOption = $(this).find('option:selected');
-                $('#year-input').val(selectedOption.data('year'));
                 $('#amount-input').val(selectedOption.data('nominal'));
+                $('#year-input').val(selectedOption.data('year'));
                 $('#semester-input').val(selectedOption.data('semester'));
             });
 
-            // Trigger change events if there are old values
+            // Trigger change events if there are old valuesx
             @if(old('siswa_id'))
                 $('#nisn-select').trigger('change');
             @endif
@@ -180,3 +189,5 @@
         });
     </script>
 @endpush
+
+

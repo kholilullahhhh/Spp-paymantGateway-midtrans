@@ -13,8 +13,8 @@ class Payment extends Model
         'spp_id',
         'paid_at',
         'order_id',
-        'month',
-        'year',
+        'paid_month',
+        'paid_year',
         'amount',
         'status'
         
