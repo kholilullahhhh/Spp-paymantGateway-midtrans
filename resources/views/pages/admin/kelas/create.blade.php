@@ -39,6 +39,11 @@
                                         <input type="text" name="name" class="form-control" required
                                             placeholder="Masukkan Nama Kelas" value="{{ old('name') }}">
                                     </div>
+                                    <div class="form-group">
+                                        <label>Nama Jurusan</label>
+                                        <input type="text" name="jurusan" class="form-control" required
+                                            placeholder="Masukkan Nama Jurusan" value="{{ old('jurusan') }}">
+                                    </div>
                                 </div>
 
                                 <div class="card-footer text-right">

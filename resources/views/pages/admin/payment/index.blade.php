@@ -60,10 +60,6 @@
                                                         </td>
                                                     @endif
                                                     <td>
-                                                        <a href="{{ route('payment.edit', $payment->id) }}"
-                                                            class="btn btn-warning btn-sm">
-                                                            <i class="fas fa-edit"></i> Edit
-                                                        </a>
                                                         <form action="{{ route('payment.hapus', $payment->id) }}"
                                                             method="POST" class="d-inline">
                                                             @csrf

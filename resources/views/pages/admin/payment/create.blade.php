@@ -38,7 +38,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="nisn-select">Pilih Siswa</label>
                                             <select class="form-control select2" name="siswa_id" id="nisn-select" required>
-                                                <option value="">Cari berdasarkan NISN/Nama</option>
+                                                <option value="">Cari berdasarkan NISN</option>
                                                 @foreach ($siswa as $student)
                                                     <option value="{{ $student->id }}" 
                                                         data-nama="{{ $student->name }}"

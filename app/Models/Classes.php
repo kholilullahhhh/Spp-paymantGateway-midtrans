@@ -10,6 +10,7 @@ class Classes extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'jurusan',
     ];
 
 }

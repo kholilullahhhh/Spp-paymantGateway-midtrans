@@ -31,6 +31,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nama Kelas</th>
+                                                <th>Jurusan</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -39,6 +40,7 @@
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
                                                     <td>{{ $kelas->name }}</td>
+                                                    <td>{{ $kelas->jurusan }}</td>
                                                     <td>
                                                         <div class="action-buttons">
                                                             <a href="{{ route('kelas.edit', $kelas->id) }}"

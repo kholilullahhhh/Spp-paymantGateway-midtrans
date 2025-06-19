@@ -28,6 +28,14 @@
                                                 value="{{ old('name', $data->name) }}">
                                         </div>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label class="col-form-label col-md-3">Nama</label>
+                                        <div class="col-md-7">
+                                            <input required type="text" name="jurusan" class="form-control"
+                                                value="{{ old('jurusan', $data->jurusan) }}">
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="card-footer text-right">
