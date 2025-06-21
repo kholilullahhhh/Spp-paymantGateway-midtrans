@@ -8,7 +8,7 @@
         </style>
     @endpush
     <div class="banner-carousel banner-carousel-1 mb-0">
-        <div class="banner-carousel-item" style="background-image:url({{ asset('landing/images/slider-main/bg1.jpg') }})">
+        <div class="banner-carousel-item" style="background-image:url({{ asset('landing/images/slider-main/333.jpg') }})">
             <div class="slider-content">
                 <div class="container h-100">
                     <div class="row align-items-center h-100">
@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div class="banner-carousel-item" style="background-image:url({{ asset('landing/images/slider-main/bg2.jpg') }})">
+        <div class="banner-carousel-item" style="background-image:url({{ asset('landing/images/slider-main/111.jpg') }})">
             <div class="slider-content text-left">
                 <div class="container h-100">
                     <div class="row align-items-center h-100">
@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <div class="banner-carousel-item" style="background-image:url({{ asset('landing/images/slider-main/bg3.jpg') }})">
+        <div class="banner-carousel-item" style="background-image:url({{ asset('landing/images/slider-main/222.jpg') }})">
             <div class="slider-content text-right">
                 <div class="container h-100">
                     <div class="row align-items-center h-100">
@@ -218,16 +218,16 @@
 
 
                 <!-- <div class="col-lg-6 mt-4 mt-lg-4 justify-content-center">
-                                    <h3 class="into-sub-title"> </h3>
-                                    <div class="box-video"> -->
+                                        <h3 class="into-sub-title"> </h3>
+                                        <div class="box-video"> -->
 
                 <!--<iframe width="420" height="315" title="Program Pengembangan keprofesian Guru. Pendidikan Jasmani, olahraga dan kesehatan" src="https://www.youtube.com/embed/gJ3g7xX9O-s"-->
                 <!--    allowfullscreen>-->
                 <!--</iframe>-->
                 <!-- <div class="video-placeholder" data-src="https://www.youtube.com"
-                                            onclick="loadVideo(this)">
-                                            <div class="video-title">Rencana Pelaksanaan Pembelajaran</div>
-                                        </div> -->
+                                                onclick="loadVideo(this)">
+                                                <div class="video-title">Rencana Pelaksanaan Pembelajaran</div>
+                                            </div> -->
                 <!--<div class="video-title">Balai Besar Guru Penggerak</div>-->
             </div>
             <!--/ Accordion end -->
@@ -394,7 +394,7 @@
                     });
 
                     lazyVideos.forEach(function (video) {
-                                                        lazyVideoObserv er.observe(video);
+                                                                lazyVideoObserv er.observe(video);
                     });
                 } else {
                     // Fallback for older browsers
