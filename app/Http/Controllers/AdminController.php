@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\InternalPpnpn;
 use App\Models\Payment;
 use App\Models\Classes;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use Spatie\Activitylog\Models\Activity;
-use App\Models\Internal;
-use App\Models\Kegiatan;
-use App\Models\PesertaKegiatan;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -86,76 +82,6 @@ class AdminController extends Controller
     }
 
 
-
-
-
-
-    // public function getByKegiatan(Request $r)
-    // {
-    //     // dd($r->all());
-    //     try {
-    //         $peserta = PesertaKegiatan::where('id_kegiatan', $r->kegiatan_id)->where('no_ktp', $r->nik)->first();
-    //         return response()->json([
-    //             'status' => $peserta == null ? false : true,
-    //             'data' => $peserta
-    //         ]);
-    //     } catch (\Exception $th) {
-    //         return response()->json([
-    //             'status' => false,
-    //             'data' => $th
-    //         ]);
-    //     }
-    // }
-
-    // public function getByKegiatanUser(Request $r)
-    // {
-    //     // dd($r->all());
-    //     try {
-    //         $peserta = PesertaKegiatan::where('id_kegiatan', $r->kegiatan_id)->where('no_ktp', $r->nik)->first();
-    //         return response()->json([
-    //             'status' => $peserta == null ? false : true,
-    //             'data' => $peserta
-    //         ]);
-    //     } catch (\Exception $th) {
-    //         return response()->json([
-    //             'status' => false,
-    //             'data' => $th
-    //         ]);
-    //     }
-    // }
-
-    // public function jadwal()
-    // {
-    //     $jadwalInternal = Internal::select('kota', 'jenis', 'deskripsi', 'kegiatan', 'tgl_kegiatan', 'tgl_selesai_kegiatan', 'jam_mulai', 'jam_selesai', 'nama')
-    //         ->whereIn('jenis', ['Pendamping Lokakarya', 'Penugasan Pegawai', 'Penugasan PPNPN'])
-    //         ->get()
-    //         ->groupBy('kegiatan');
-
-    //     $jadwal = $jadwalInternal->map(function ($items, $key) {
-    //         $groupedByJenis = $items->groupBy('jenis');
-    //         $penugasanPegawai = $groupedByJenis->get('Penugasan Pegawai', collect());
-    //         $penugasanPPNPN = $groupedByJenis->get('Penugasan PPNPN', collect());
-
-    //         return [
-    //             'kegiatan' => $key,
-    //             'deskripsi' => $items->first()->deskripsi,
-    //             'tgl_kegiatan' => $items->first()->tgl_kegiatan,
-    //             'tgl_selesai_kegiatan' => $items->first()->tgl_selesai_kegiatan,
-    //             'jam_mulai' => $items->first()->jam_mulai,
-    //             'jam_selesai' => $items->first()->jam_selesai,
-    //             'penugasan_pegawai' => $penugasanPegawai->pluck('nama')->unique()->toArray(),
-    //             'penugasan_ppnpn' => $penugasanPPNPN->pluck('nama')->unique()->toArray(),
-    //         ];
-    //     })->values();
-    //     // dd($jadwal[46]);
-    //     return response()->json([
-    //         'jadwal' => $jadwal
-    //     ]);
-    // }
-
-
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -192,17 +118,4 @@ class AdminController extends Controller
         return redirect()->route('dashboard')->with('message', 'update profile');
     }
 
-    // public function getJadwalByPegawai($nik)
-    // {
-    //     // Ambil jadwal dari Internal hanya untuk pegawai dengan NIK tertentu
-    //     // Ambil jadwal dari Internal dengan tiga jenis yang disebutkan
-    //     $jadwalInternal = Internal::select('kota', 'jenis', 'deskripsi', 'kegiatan', 'tgl_kegiatan', 'tgl_selesai_kegiatan', 'jam_mulai', 'jam_selesai', 'nama')
-    //         ->whereIn('jenis', ['Pendamping Lokakarya', 'Penugasan Pegawai', 'Penugasan PPNPN'])->where('nik', $nik)
-    //         ->get();
-
-    //     // Mengembalikan response dalam bentuk JSON
-    //     return response()->json([
-    //         'jadwal' => $jadwalInternal
-    //     ]);
-    // }
 }

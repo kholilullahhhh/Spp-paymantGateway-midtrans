@@ -113,7 +113,8 @@
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         Total Pembayaran Bulan Ini</div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">Rp
-                                        {{ number_format($currentMonthPayments, 0, ',', '.') }}</div>
+                                        {{ number_format($currentMonthPayments, 0, ',', '.') }}
+                                    </div>
                                 </div>
                                 <div class="col-auto">
                                     <i class="bi bi-cash-stack fa-2x text-primary"></i>
@@ -197,7 +198,8 @@
                                     <div class="text-center">
                                         <div class="text-xs text-muted">Total Tahun Ini</div>
                                         <div class="h5 font-weight-bold">Rp
-                                            {{ number_format($currentYearPayment, 0, ',', '.') }}</div>
+                                            {{ number_format($currentYearPayment, 0, ',', '.') }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -262,30 +264,30 @@
 
 
                 <!-- Class Payment Progress -->
-<div class="col-lg-6 mb-4">
-    <div class="dashboard-card card shadow h-100">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Progress Pembayaran per Kelas</h6>
-        </div>
-        <div class="card-body">
-            @foreach($classProgress as $class)
-                <div class="mb-4">
-                    <div class="d-flex justify-content-between mb-1">
-                        <span class="font-weight-bold">{{ $class->name }}</span>
-                        <span class="text-muted">{{ $class->paid_count }}/{{ $class->total_students }}</span>
-                    </div>
-                    <div class="progress progress-thin">
-                        <div class="progress-bar bg-success" role="progressbar"
-                            style="width: {{ $class->percentage }}%" aria-valuenow="{{ $class->percentage }}"
-                            aria-valuemin="0" aria-valuemax="100">
+                <div class="col-lg-6 mb-4">
+                    <div class="dashboard-card card shadow h-100">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Progress Pembayaran per Kelas</h6>
+                        </div>
+                        <div class="card-body">
+                            @foreach($classProgress as $class)
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between mb-1">
+                                        <span class="font-weight-bold">{{ $class->name }}</span>
+                                        <span class="text-muted">{{ $class->paid_count }}/{{ $class->total_students }}</span>
+                                    </div>
+                                    <div class="progress progress-thin">
+                                        <div class="progress-bar bg-success" role="progressbar"
+                                            style="width: {{ $class->percentage }}%" aria-valuenow="{{ $class->percentage }}"
+                                            aria-valuemin="0" aria-valuemax="100">
+                                        </div>
+                                    </div>
+                                    <small class="text-muted">{{ round($class->percentage) }}% complete</small>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                    <small class="text-muted">{{ round($class->percentage) }}% complete</small>
                 </div>
-            @endforeach
-        </div>
-    </div>
-</div>
 
             </div>
         </section>
