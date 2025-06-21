@@ -38,9 +38,9 @@
                             <i class="fas fa-map-marker-alt mr-0"></i>
                         </span>
                         <div class="ts-service-box-content">
-                            <h4>Kunjungi Kantor Kami</h4>
-                            <p> Jl. Pacerakkang No.2, Pandang, Kec. Tamalanrea, Kota Makassar, Sulawesi
-                              Selatan</p>
+                            <h4>Kunjungi Sekolah Kami</h4>
+                            <p> Jl. Langsat No 18 B Turikale Kab Maros 90511, Turikale, Maros Regency, South Sulawesi 90511
+                            </p>
                         </div>
                     </div>
                 </div><!-- Col 1 end -->
@@ -52,7 +52,7 @@
                         </span>
                         <div class="ts-service-box-content">
                             <h4>Email Kami</h4>
-                            <p>rpph@gmail.com </p>
+                            <p>smktridharmamaros@gmail.com </p>
                         </div>
                     </div>
                 </div><!-- Col 2 end -->
@@ -64,7 +64,7 @@
                         </span>
                         <div class="ts-service-box-content">
                             <h4>Hubungi Kami</h4>
-                            <p>(0411) 8898099, 998970 </p>
+                            <p>(0411) 000000, 080808 </p>
                         </div>
                     </div>
                 </div><!-- Col 3 end -->
@@ -74,8 +74,10 @@
             <div class="gap-60"></div>
 
             <div class="google-map">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.6360074660843!2d119.444923!3d-5.162121999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbee30920b03ac9%3A0xa738c1f4d75fc525!2sBBGP%20Sulawesi%20Selatan!5e0!3m2!1sid!2sid!4v1719594902720!5m2!1sid!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3974.6026888455353!2d119.57711507498125!3d-5.005462094970952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbef86aabd5f0e5%3A0x73f63e3ca005fb93!2sSMK%20Tridarma%20Maros!5e0!3m2!1sid!2sid!4v1750481016500!5m2!1sid!2sid"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
             <div class="gap-40"></div>

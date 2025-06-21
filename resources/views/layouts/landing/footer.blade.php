@@ -6,7 +6,7 @@
                     <h3 class="widget-title">Tentang Kami</h3>
                     <img loading="lazy" width="200px" class="footer-logo"
                         src="{{ asset('landing/images/footer/rpph.jpg') }}" alt="Constra">
-                    <p>RPPH Provinsi Sulawesi Selatan - Kementerian Pendidikan, Kebudayaan, Riset dan Teknologi</p>
+                    <p>SMK TRIDARMA MAROS - Kementerian Pendidikan, Kebudayaan, Riset dan Teknologi</p>
                     <div class="footer-social">
                         <ul>
                             <li><a href="https://www.facebook.com/" aria-label="Facebook"><i
@@ -25,7 +25,8 @@
                     <div class="working-hours">
                         <ul class="list-arrow">
                             <li>
-                                Jl. PelitaTaeng No.2, Pandang, Kec. Tamalanrea, Kota Makassar, Sulawesi Selatan
+                                Jl. Langsat No 18 B Turikale Kab Maros 90511, Turikale, Maros Regency, South Sulawesi
+                                90511
                             </li>
                             <li>08898988988 </li>
                             <li>rpphsulsel@gmail.com </li>
@@ -37,7 +38,7 @@
                     <h3 class="widget-title">Jam Kerja</h3>
                     <div class="working-hours">
 
-                      
+
                         Kami bekerja 5 hari kerja dalam seminggu, dari Senin hingga Jumat, kecuali hari libur besar.
                         Hubungi kami jika Anda mengalami keadaan darurat melalui Hotline dan Formulir Kontak kami.
 

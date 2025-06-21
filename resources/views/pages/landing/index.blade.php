@@ -193,29 +193,41 @@
                         <h2 class="into-title">Tentang Kami</h2>
                         <h3 class="into-sub-title">SMK TRIDHARMA MAROS</h3>
                         <p class="my-sub-content">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem Ipsum has been the industry's standard dummy text
-                            ever since the 1500ss, when an unknown printer took a galley of type
-                            and scrambled it to make a type specimen book. It has survived not o
-
+                            SMK Tridharma Maros memberikan kemudahan dalam melakukan pembayaran SPP (Sumbangan Pembinaan
+                            Pendidikan) secara online.
+                            Dengan memanfaatkan teknologi, SMK Tridharma Maros telah bekerja sama dengan berbagai penyedia
+                            layanan **payment gateway** yang memungkinkan siswa dan orang tua untuk melakukan pembayaran SPP
+                            dengan mudah dan cepat melalui internet.
+                        </p>
+                        <p class="my-sub-content">
+                            Pembayaran dapat dilakukan menggunakan berbagai metode, termasuk transfer bank, kartu kredit,
+                            dan dompet digital (e-wallet).
+                            Sistem **payment gateway** yang kami gunakan menjamin transaksi yang aman dan terpercaya. Dengan
+                            pembayaran online, siswa dan orang tua tidak perlu datang langsung ke sekolah, sehingga lebih
+                            efisien dan menghemat waktu.
+                        </p>
+                        <p class="my-sub-content">
+                            Dengan menggunakan sistem ini, setiap transaksi tercatat secara otomatis dalam sistem kami,
+                            memungkinkan administrasi yang lebih cepat dan mengurangi potensi kesalahan dalam proses
+                            pembayaran.
+                            Kami berkomitmen untuk menyediakan layanan terbaik demi kenyamanan semua pihak dalam melakukan
+                            pembayaran SPP di SMK Tridharma Maros.
                         </p>
                     </div><!-- Intro box end -->
-
-
-
                 </div><!-- Col end -->
 
+
                 <!-- <div class="col-lg-6 mt-4 mt-lg-4 justify-content-center">
-                            <h3 class="into-sub-title"> </h3>
-                            <div class="box-video"> -->
+                                    <h3 class="into-sub-title"> </h3>
+                                    <div class="box-video"> -->
 
                 <!--<iframe width="420" height="315" title="Program Pengembangan keprofesian Guru. Pendidikan Jasmani, olahraga dan kesehatan" src="https://www.youtube.com/embed/gJ3g7xX9O-s"-->
                 <!--    allowfullscreen>-->
                 <!--</iframe>-->
                 <!-- <div class="video-placeholder" data-src="https://www.youtube.com"
-                                    onclick="loadVideo(this)">
-                                    <div class="video-title">Rencana Pelaksanaan Pembelajaran</div>
-                                </div> -->
+                                            onclick="loadVideo(this)">
+                                            <div class="video-title">Rencana Pelaksanaan Pembelajaran</div>
+                                        </div> -->
                 <!--<div class="video-title">Balai Besar Guru Penggerak</div>-->
             </div>
             <!--/ Accordion end -->
@@ -382,7 +394,7 @@
                     });
 
                     lazyVideos.forEach(function (video) {
-                                        lazyVideoObserv er.observe(video);
+                                                        lazyVideoObserv er.observe(video);
                     });
                 } else {
                     // Fallback for older browsers
