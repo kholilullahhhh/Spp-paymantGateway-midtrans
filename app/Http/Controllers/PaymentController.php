@@ -13,7 +13,7 @@ class PaymentController extends Controller
     private $menu = 'payment';
     public function index()
     {
-        $datas = Payment::with(['siswa', 'spp'])->get();
+        $datas = Payment::with(['siswa', 'spp'])->latest()->get();
         $menu = $this->menu;
 
         return view('pages.admin.payment.index', compact('menu', 'datas'));

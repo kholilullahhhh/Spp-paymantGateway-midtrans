@@ -59,40 +59,12 @@
             @endif
 
             @if (session('role') == 'siswa')
-                    <li class="nav-item dropdown {{ $menu == 'jadwal' || 'siswa' ? 'active' : '' }}">
-                        <a href="#" class="nav-link has-dropdown"><i class="fas fa-sitemap"></i>
-                            <span>Master Data</span></a>
-                        <ul class="dropdown-menu">
 
-                            <li class="{{ $menu == 'siswa' ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('siswa.index') }}">
-                                    Data Siswa
-                                </a>
-                            </li>
-
-                            <li class="{{ $menu == 'kelas' ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('kelas.index') }}">
-                                    Data Kelas
-                                </a>
-                            </li>
-
-                            <li class="{{ $menu == 'spp' ? 'active' : '' }}">
-                                <a class="nav-link" href="{{ route('spp.index') }}">
-                                    Data SPP
-                                </a>
-                            </li>
-                    </li>
-
-                </ul>
-                </li>
-
-
-                <li class="{{ $menu == 'akun' ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('akun.index') }}">
-                        <i class="fas fa-user"></i> <span>Data Akun</span>
+                <li class="{{ $menu == 'midtrans' ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('midtrans.index') }}">
+                        <i class="fas fa-wallet"></i> <span>Data Transaksi</span>
                     </a>
                 </li>
-
                 <li class="menu-header">Landing Page</li>
                 
             @endif

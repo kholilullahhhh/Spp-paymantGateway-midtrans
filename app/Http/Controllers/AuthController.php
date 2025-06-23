@@ -23,17 +23,17 @@ class AuthController extends Controller
         if ($request->role == null && $request->username == 'admin') {
             $request->role = 'admin';
         }
-        
+
         if ($request->role == null) {
             return redirect()->back()->with('message', 'gagal login');
         }
         // dump($request->all());
         // dump(Auth::attempt(['username' => $request->username, 'password' => $request->password, 'role' => $request->role]));
         // dump(Admin::where('username', $request->username)->where('role', $request->role)->first());
-        
+
         $user = Admin::where('username', $request->username)->where('role', $request->role)->first();
         $user1 = User::where('username', $request->username)->where('role', $request->role)->first();
-        
+
         // dump($user);
         // dump($user1);
         // dump(Auth::attempt(['username' => $user->username, 'password' => $user->password, 'role' => $user->role]));
@@ -49,8 +49,10 @@ class AuthController extends Controller
             Session::put('role', $user->role);
             Session::put('cek', true);
 
-
+            if ($user->role == 'admin')
+                return redirect()->route('dashboard')->with('message', 'sukses login');
             return redirect()->route('dashboard')->with('message', 'sukses login');
+
         } else {
             return redirect()->back()->with('message', 'gagal login');
         }

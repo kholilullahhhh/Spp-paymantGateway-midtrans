@@ -18,7 +18,7 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $datas = User::where('role', 'siswa')->with(['class', 'spp'])->get();
+        $datas = User::where('role', 'siswa')->with(['class', 'spp'])->latest()->get();
         $menu = $this->menu;
         return view('pages.admin.siswa.index', compact('menu', 'datas'));
     }

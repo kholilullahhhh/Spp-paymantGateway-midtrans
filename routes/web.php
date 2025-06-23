@@ -88,6 +88,21 @@ Route::group(
 //     return view('welcome');
 // });
 
+//User
+Route::group(
+    ['prefix' => '', 'namespace' => 'App\Http\Controllers\Siswa', 'middleware' => 'ValidasiUser'],
+    function () {
+        Route::redirect('/', 'dahboard/');
+        // Dashboard
+        Route::prefix('dashboard')->group(function () {
+
+           
+        });
+    }
+);
+
+
+// Admin
 Route::group(
     ['prefix' => '', 'namespace' => 'App\Http\Controllers', 'middleware' => 'ValidasiUser'],
     function () {
@@ -192,6 +207,26 @@ Route::group(
                 Route::get('/edit/{id}', 'ModulController@edit')->name('modul.edit');
                 Route::put('/update', 'ModulController@update')->name('modul.update');
                 Route::post('/hapus/{id}', 'ModulController@destroy')->name('modul.hapus');
+            });
+
+            //payment midtrans
+            Route::prefix('payment_midtrans')->group(function () {
+                Route::get('/', 'MidtransController@index')->name('midtrans.index');
+                Route::get('/create', 'MidtransController@create')->name('midtrans.create');
+                Route::post('/store', 'MidtransController@store')->name('midtrans.store');
+                Route::get('/edit/{id}', 'MidtransController@edit')->name('midtrans.edit');
+                Route::put('/update', 'MidtransController@update')->name('midtrans.update');
+                Route::delete('/hapus/{id}', 'MidtransController@destroy')->name('midtrans.hapus');
+            });
+
+             //payment midtrans
+            Route::prefix('payment_midtrans')->group(function () {
+                Route::get('/', 'MidtransController@index')->name('midtrans.index');
+                Route::get('/create', 'MidtransController@create')->name('midtrans.create');
+                Route::post('/store', 'MidtransController@store')->name('midtrans.store');
+                Route::get('/edit/{id}', 'MidtransController@edit')->name('midtrans.edit');
+                Route::put('/update', 'MidtransController@update')->name('midtrans.update');
+                Route::delete('/hapus/{id}', 'MidtransController@destroy')->name('midtrans.hapus');
             });
 
         });

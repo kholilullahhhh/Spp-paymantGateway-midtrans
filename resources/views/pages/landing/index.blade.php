@@ -79,7 +79,7 @@
                             <i class="fab fa-whatsapp fa-lg"></i>
                         </div>
                         <div class="info-my-content">
-                            <a href="">
+                            <a href="#">
                                 <p>Unit Layanan Terpadu (ULT)</p>
                             </a>
                         </div>
@@ -89,7 +89,7 @@
                             <i class="fas fa-award fa-lg"></i>
                         </div>
                         <div class="info-my-content">
-                            <a href="">
+                            <a href="#">
                                 <p>Standar Pelayanan</p>
                             </a>
                         </div>
@@ -99,8 +99,8 @@
                             <i class="fas fa-users fa-lg"></i>
                         </div>
                         <div class="info-my-content">
-                            <a href="">
-                                <p>Lorem Ipsum is simply </p>
+                            <a href="#">
+                                <p>Lorem Ipsum </p>
                             </a>
                         </div>
                     </li>
@@ -109,8 +109,8 @@
                             <i class="fas fa-paste fa-lg"></i>
                         </div>
                         <div class="info-my-content">
-                            <a href="">
-                                <p class="multi-line">Lorem Ipsum is simply dummy text of the printing </p>
+                            <a href="#">
+                                <p class="multi-line">Payment Gateway With Midtrans </p>
                             </a>
                         </div>
                     </li>
