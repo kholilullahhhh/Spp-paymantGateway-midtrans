@@ -26,10 +26,19 @@ class PaymentController extends Controller
 
         return view('pages.admin.payment.create', compact('menu', 'siswa', 'spp'));
     }
+    public function konfirmasi($id)
+    {
+        $data = Payment::findOrFail($id);
+        $data->status = 'paid';
+        $data->paid_at = now();
+        $data->save();
+
+        return redirect()->route('payment.index')->with('success', 'Payment confirmed successfully');
+    }
 
     public function store(Request $request)
     {
-        $orderId = 'PAY-' . strtoupper(Str::random(5));
+        $orderId = 'PYMT-' . time() . '-' . rand(1000, 9999);
         $data = $request->all();
         $data['order_id'] = $orderId;
 
@@ -38,6 +47,7 @@ class PaymentController extends Controller
             $sppPlan = SppPlan::find($request->spp_id);
             $data['paid_year'] = $sppPlan->year;  // Set paid_year from the selected SPP plan
         }
+        // dd($data);
 
         // Save the payment data
         Payment::create($data);

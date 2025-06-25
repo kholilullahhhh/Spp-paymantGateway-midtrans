@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MidtransController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,17 +90,17 @@ Route::group(
 // });
 
 //User
-Route::group(
-    ['prefix' => '', 'namespace' => 'App\Http\Controllers\Siswa', 'middleware' => 'ValidasiUser'],
-    function () {
-        Route::redirect('/', 'dahboard/');
-        // Dashboard
-        Route::prefix('dashboard')->group(function () {
+// Route::group(
+//     ['prefix' => '', 'namespace' => 'App\Http\Controllers\Siswa', 'middleware' => 'ValidasiUser'],
+//     function () {
+//         Route::redirect('/', 'dahboard/');
+//         // Dashboard
+//         Route::prefix('dashboard')->group(function () {
 
-           
-        });
-    }
-);
+
+//         });
+//     }
+// );
 
 
 // Admin
@@ -164,6 +165,9 @@ Route::group(
                 Route::get('/edit/{id}', 'PaymentController@edit')->name('payment.edit');
                 Route::put('/update', 'PaymentController@update')->name('payment.update');
                 Route::delete('/hapus/{id}', 'PaymentController@destroy')->name('payment.hapus');
+                Route::post('/konformasi', 'PaymentController@konfirmasi')->name('konfirmasi.pembayaran');
+
+
             });
 
 
@@ -219,14 +223,13 @@ Route::group(
                 Route::delete('/hapus/{id}', 'MidtransController@destroy')->name('midtrans.hapus');
             });
 
-             //payment midtrans
+            //payment midtrans siswa
             Route::prefix('payment_midtrans')->group(function () {
-                Route::get('/', 'MidtransController@index')->name('midtrans.index');
-                Route::get('/create', 'MidtransController@create')->name('midtrans.create');
-                Route::post('/store', 'MidtransController@store')->name('midtrans.store');
-                Route::get('/edit/{id}', 'MidtransController@edit')->name('midtrans.edit');
-                Route::put('/update', 'MidtransController@update')->name('midtrans.update');
-                Route::delete('/hapus/{id}', 'MidtransController@destroy')->name('midtrans.hapus');
+                Route::get('/', [MidtransController::class, 'index'])->name('midtrans.index');
+                Route::get('/create/{id}', [MidtransController::class, 'create'])->name('midtrans.create');
+                // Route store dihapus karena tidak diperlukan lagi
+                Route::get('/callback', [MidtransController::class, 'callback'])->name('midtrans.callback');
+                Route::post('/notification', [MidtransController::class, 'notificationHandler'])->name('midtrans.notification');
             });
 
         });

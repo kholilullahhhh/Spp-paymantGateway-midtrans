@@ -57,11 +57,18 @@
                                                     @else
                                                         <td>
                                                             <button class="btn btn-warning">{{ $payment->status }}</button>
+
                                                         </td>
+
                                                     @endif
+
                                                     <td>
-                                                        <form action="{{ route('payment.hapus', $payment->id) }}"
-                                                            method="POST" class="d-inline">
+                                                        <a href="{{ route('konfirmasi.pembayaran', $payment->id) }}"
+                                                            class="btn btn-primary btn-sm">
+                                                            <i class="fas fa-money-bill-wave"></i> Konfirmasi
+                                                        </a>
+                                                        <form action="{{ route('payment.hapus', $payment->id) }}" method="POST"
+                                                            class="d-inline">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm">
@@ -136,7 +143,7 @@
                         text: '{{ session('error') }}',
                     });
                 @endif
-                                                                                        });
+                                                                                                                        });
         </script>
     @endpush
 @endsection

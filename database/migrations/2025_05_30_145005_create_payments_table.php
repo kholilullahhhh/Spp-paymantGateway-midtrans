@@ -19,7 +19,8 @@ return new class extends Migration {
             $table->string('paid_month');
             $table->string('paid_year');
             $table->decimal('amount', 12, 2);
-            $table->enum('status', ['unpaid', 'paid'])->default('unpaid');
+            $table->enum('status', ['unpaid', 'paid','pending'])->default('unpaid');
+            $table->string('snap_token')->nullable();
             $table->timestamps();
         });
     }

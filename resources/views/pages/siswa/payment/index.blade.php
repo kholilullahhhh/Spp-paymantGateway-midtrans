@@ -38,33 +38,41 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($datas as $index => $payment)
+                                            @foreach ($datas as $payment)
                                                 <tr>
                                                     <td>{{ $payment->order_id }}</td>
                                                     <td>{{ $payment->siswa->nisn }}</td>
                                                     <td>{{ $payment->siswa->name }}</td>
                                                     <td>{{ $payment->spp->semester }}</td>
                                                     <td>{{ $payment->paid_year }}</td>
-                                                    <td>{{ number_format($payment->amount, 0, ',', '.') }}</td>
-                                                    <td>{{ \Carbon\Carbon::parse($payment->paid_at)->format('d-m-Y') }}</td>
-                                                    @if ($payment->status == 'paid')
-                                                        <td>
-                                                            <button class="btn btn-success">{{ $payment->status }}</button>
-                                                        </td>
-                                                    @else
-                                                        <td>
-                                                            <button class="btn btn-warning">{{ $payment->status }}</button>
-                                                        </td>
-                                                    @endif
+                                                    <td>Rp {{ number_format($payment->amount, 0, ',', '.') }}</td>
                                                     <td>
-                                                        <form action="{{ route('payment.hapus', $payment->id) }}"
-                                                            method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                                <i class="fas fa-trash"></i> Hapus
+                                                        @if($payment->paid_at)
+                                                            {{ \Carbon\Carbon::parse($payment->paid_at)->format('d-m-Y') }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($payment->status == 'paid')
+                                                            <span class="badge badge-success">Lunas</span>
+                                                        @elseif($payment->status == 'pending')
+                                                            <span class="badge badge-warning">Menunggu</span>
+                                                        @else
+                                                            <span class="badge badge-danger">Belum Bayar</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if($payment->status != 'paid')
+                                                            <a href="{{ route('midtrans.create', $payment->id) }}" 
+                                                               class="btn btn-primary btn-sm">
+                                                               <i class="fas fa-money-bill-wave"></i> Bayar
+                                                            </a>
+                                                        @else
+                                                            <button class="btn btn-success btn-sm" disabled>
+                                                                <i class="fas fa-check"></i> Sudah Bayar
                                                             </button>
-                                                        </form>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -92,29 +100,7 @@
             $(document).ready(function () {
                 $('#table-pembayaran').DataTable();
 
-                // SweetAlert for delete confirmation
-                $('.delete-btn').click(function (e) {
-                    e.preventDefault();
-                    var form = $(this).closest('form');
-
-                    Swal.fire({
-                        title: 'Apakah Anda yakin?',
-                        text: "Data kelas ini akan dihapus secara permanen!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Ya, Hapus!',
-                        cancelButtonText: 'Batal',
-                        reverseButtons: true
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            form.submit();  // Submit the form if confirmed
-                        }
-                    });
-                });
-
-                // Show success message if exists
+                // SweetAlert for notifications
                 @if(session('message'))
                     Swal.fire({
                         icon: 'success',
@@ -125,7 +111,6 @@
                     });
                 @endif
 
-                // Show error message if exists
                 @if(session('error'))
                     Swal.fire({
                         icon: 'error',
@@ -133,7 +118,7 @@
                         text: '{{ session('error') }}',
                     });
                 @endif
-                                                                                        });
+            });
         </script>
     @endpush
 @endsection
