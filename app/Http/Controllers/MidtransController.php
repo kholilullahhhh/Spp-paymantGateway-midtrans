@@ -52,9 +52,9 @@ class MidtransController extends Controller
             'customer_details' => [
                 'first_name' => $payment->siswa->name,
                 'email' => auth()->user()->email,
-                'phone' => $payment->siswa->phone ?? '081234567890',
+                'phone' => $payment->siswa->n0_hp ?? '081234567890',
             ],
-            'enabled_payments' => ['gopay', 'bank_transfer', 'credit_card'],
+            // 'enabled_payments' => ['gopay', 'bank_transfer', 'credit_card'],
             'expiry' => [
                 'start_time' => now()->format('Y-m-d H:i:s O'),
                 'unit' => 'hours',
@@ -65,33 +65,22 @@ class MidtransController extends Controller
             ]
         ];
 
-        try {
-            // Generate Snap Token
-            $snapToken = Snap::getSnapToken($params);
+        // Generate Snap Token
+        $snapToken = Snap::getSnapToken($params);
 
-            // Update payment data
-            $payment->update([
-                'snap_token' => $snapToken,
-                'status' => 'pending' // Set status ke pending
-            ]);
+        // Update payment data
+        $payment->update([
+            'snap_token' => $snapToken,
+            'status' => 'paid' // Set status ke pending
+        ]);
 
-            return view('pages.siswa.payment.checkout', [
-                'menu' => 'midtrans',
-                'snapToken' => $snapToken,
-                'payment' => $payment
-            ]);
-
-        } catch (\Exception $e) {
-            // Log error untuk debugging
-            \Log::error('Midtrans Error: ' . $e->getMessage(), [
-                'payment_id' => $payment->id,
-                'order_id' => $payment->order_id
-            ]);
-
-            return redirect()->back()
-                ->with('error', 'Pembayaran gagal: ' . $e->getMessage());
-        }
+        return view('pages.siswa.payment.checkout', [
+            'menu' => 'midtrans',
+            'snapToken' => $snapToken,
+            'payment' => $payment
+        ]);
     }
+
 
     // public function store(Request $request, $id)
     // {
@@ -152,6 +141,7 @@ class MidtransController extends Controller
                 }
             }
         }
+        // dd($hashed);
 
         return redirect()->route('midtrans.index')->with('error', 'Pembayaran gagal');
     }

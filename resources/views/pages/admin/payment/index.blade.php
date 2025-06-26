@@ -57,11 +57,8 @@
                                                     @else
                                                         <td>
                                                             <button class="btn btn-warning">{{ $payment->status }}</button>
-
                                                         </td>
-
                                                     @endif
-
                                                     <td>
                                                         <a href="{{ route('konfirmasi.pembayaran', $payment->id) }}"
                                                             class="btn btn-primary btn-sm">
@@ -143,7 +140,7 @@
                         text: '{{ session('error') }}',
                     });
                 @endif
-                                                                                                                        });
+                                                                                                                                                                });
         </script>
     @endpush
 @endsection
