@@ -28,7 +28,7 @@ class PaymentController extends Controller
     }
     public function konfirmasi($id)
     {
-        $data = Payment::findOrFail($id);
+        $data = Payment::find($id);
         $data->status = 'paid';
         $data->paid_at = now();
         $data->save();

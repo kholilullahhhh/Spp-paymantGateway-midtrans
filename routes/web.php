@@ -155,17 +155,15 @@ Route::group(
                 Route::get('/edit/{id}', 'KelasController@edit')->name('kelas.edit');
                 Route::put('/update', 'KelasController@update')->name('kelas.update');
                 Route::delete('/hapus/{id}', 'KelasController@destroy')->name('kelas.hapus');
-            });
+        });
 
             // payment
             Route::prefix('payment')->group(function () {
                 Route::get('/', 'PaymentController@index')->name('payment.index');
                 Route::get('/create', 'PaymentController@create')->name('payment.create');
                 Route::post('/store', 'PaymentController@store')->name('payment.store');
-                Route::get('/edit/{id}', 'PaymentController@edit')->name('payment.edit');
-                Route::put('/update', 'PaymentController@update')->name('payment.update');
                 Route::delete('/hapus/{id}', 'PaymentController@destroy')->name('payment.hapus');
-                Route::post('/konformasi', 'PaymentController@konfirmasi')->name('konfirmasi.pembayaran');
+                Route::put('/konformasi/{id}', 'PaymentController@konfirmasi')->name('konfirmasi.pembayaran');
 
 
             });

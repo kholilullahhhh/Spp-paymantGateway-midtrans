@@ -60,10 +60,14 @@
                                                         </td>
                                                     @endif
                                                     <td>
-                                                        <a href="{{ route('konfirmasi.pembayaran', $payment->id) }}"
-                                                            class="btn btn-primary btn-sm">
-                                                            <i class="fas fa-money-bill-wave"></i> Konfirmasi
-                                                        </a>
+                                                        <form action="{{ route('konfirmasi.pembayaran', $payment->id) }}"
+                                                            method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                                <i class="fas fa-money-bill-wave"></i> Konfirmasi
+                                                            </button>
+                                                        </form>
                                                         <form action="{{ route('payment.hapus', $payment->id) }}" method="POST"
                                                             class="d-inline">
                                                             @csrf
@@ -140,7 +144,7 @@
                         text: '{{ session('error') }}',
                     });
                 @endif
-                                                                                                                                                                });
+                                                                                                                                                                        });
         </script>
     @endpush
 @endsection

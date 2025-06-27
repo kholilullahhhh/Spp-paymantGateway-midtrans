@@ -63,14 +63,14 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if($payment->status == 'paid')
+                                                        @if($payment->status == 'unpaid')
                                                             <a href="{{ route('midtrans.create', $payment->id) }}"
                                                                 class="btn btn-primary btn-sm">
                                                                 <i class="fas fa-money-bill-wave"></i> Bayar
                                                             </a>
                                                         @elseif($payment->status == 'pending')
                                                             <button class="btn btn-success btn-sm" disabled>
-                                                                <i class="fas fa-check"></i> Tunggu Konfirmasi
+                                                                <i class="fa fa-spinner"></i> Waiting
                                                                 </button>
                                                         @else
                                                                 <button class="btn btn-success btn-sm" disabled>
