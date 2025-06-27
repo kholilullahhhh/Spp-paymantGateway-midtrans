@@ -54,7 +54,6 @@ class MidtransController extends Controller
                 'email' => auth()->user()->email,
                 'phone' => $payment->siswa->n0_hp ?? '081234567890',
             ],
-            // 'enabled_payments' => ['gopay', 'bank_transfer', 'credit_card'],
             'expiry' => [
                 'start_time' => now()->format('Y-m-d H:i:s O'),
                 'unit' => 'hours',
@@ -71,7 +70,7 @@ class MidtransController extends Controller
         // Update payment data
         $payment->update([
             'snap_token' => $snapToken,
-            'status' => 'paid' // Set status ke pending
+            'status' => 'pending' // Set status ke pending
         ]);
 
         return view('pages.siswa.payment.checkout', [
@@ -82,69 +81,34 @@ class MidtransController extends Controller
     }
 
 
-    // public function store(Request $request, $id)
-    // {
-    //     $payment = Payment::findOrFail($id);
-
-    //     // Konfigurasi Midtrans
-    //     Config::$serverKey = config('midtrans.server_key');
-    //     Config::$isProduction = config('midtrans.is_production');
-    //     Config::$isSanitized = config('midtrans.is_sanitized');
-    //     Config::$is3ds = config('midtrans.is_3ds');
-
-    //     $params = [
-    //         'transaction_details' => [
-    //             'order_id' => $payment->order_id,
-    //             'gross_amount' => $payment->amount,
-    //         ],
-    //         'customer_details' => [
-    //             'first_name' => $payment->siswa->name,
-    //             'email' => auth()->user()->email,
-    //             'phone' => $payment->siswa->phone ?? '081234567890',
-    //         ],
-    //         'enabled_payments' => ['gopay', 'bank_transfer', 'credit_card'],
-    //         'callbacks' => [
-    //             'finish' => route('midtrans.callback')
-    //         ]
-    //     ];
-
-    //     try {
-    //         $snapToken = Snap::getSnapToken($params);
-    //         $payment->snap_token = $snapToken;
-    //         $payment->save();
-
-    //         return view('pages.siswa.payment.checkout', [
-    //             'snapToken' => $snapToken,
-    //             'payment' => $payment
-    //         ]);
-
-    //     } catch (\Exception $e) {
-    //         return redirect()->back()->with('error', 'Pembayaran gagal: ' . $e->getMessage());
-    //     }
-    // }
 
     public function callback(Request $request)
     {
+        // Mendapatkan server key dari konfigurasi
         $serverKey = config('midtrans.server_key');
-        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        $order_id = $request->input('order_id');
 
-        if ($hashed == $request->signature_key) {
-            if ($request->transaction_status == 'capture' || $request->transaction_status == 'settlement') {
-                $payment = Payment::where('order_id', $request->order_id)->first();
-                if ($payment) {
-                    $payment->status = 'paid';
-                    $payment->paid_at = now();
-                    $payment->save();
-
-                    // Kirim notifikasi ke siswa/petugas
-                    return redirect()->route('midtrans.index')->with('success', 'Pembayaran berhasil');
-                }
-            }
+        // Cek apakah order_id ada dalam request
+        if (!$order_id) {
+            return redirect()->route('midtrans.index')->with('error', 'Order ID tidak ditemukan.');
         }
-        // dd($hashed);
 
-        return redirect()->route('midtrans.index')->with('error', 'Pembayaran gagal');
+        // Mencari pembayaran berdasarkan order_id
+        $payment = Payment::where('order_id', $order_id)->first();
+
+        if ($payment) {
+            $payment->status = 'pending';
+            $payment->paid_at = now();
+            $payment->save();
+
+            // Kirim notifikasi sukses ke pengguna
+            return redirect()->route('midtrans.index')->with('success', 'Pembayaran berhasil');
+        } else {
+            // Jika pembayaran tidak ditemukan
+            return redirect()->route('midtrans.index')->with('error', 'Pembayaran gagal, order ID tidak ditemukan.');
+        }
     }
+
 
     public function notificationHandler(Request $request)
     {
@@ -158,32 +122,45 @@ class MidtransController extends Controller
 
         $payment = Payment::where('order_id', $orderId)->first();
 
+        // Pastikan pembayaran ditemukan berdasarkan order_id
         if (!$payment) {
             return response()->json(['status' => 'error', 'message' => 'Payment not found'], 404);
         }
 
-        if ($transaction == 'capture') {
-            if ($type == 'credit_card') {
-                if ($fraud == 'challenge') {
-                    $payment->status = 'challenge';
-                } else {
-                    $payment->status = 'paid';
+        // Mengupdate status pembayaran berdasarkan transaksi yang diterima dari Midtrans
+        switch ($transaction) {
+            case 'capture':
+                if ($type == 'credit_card') {
+                    if ($fraud == 'challenge') {
+                        $payment->status = 'challenge'; // Status untuk transaksi yang dicegah
+                    } else {
+                        $payment->status = 'paid'; // Pembayaran berhasil
+                        $payment->paid_at = now(); // Set waktu pembayaran
+                    }
                 }
-            }
-        } elseif ($transaction == 'settlement') {
-            $payment->status = 'paid';
-            $payment->paid_at = now();
-        } elseif ($transaction == 'pending') {
-            $payment->status = 'pending';
-        } elseif ($transaction == 'deny') {
-            $payment->status = 'denied';
-        } elseif ($transaction == 'expire') {
-            $payment->status = 'expired';
-        } elseif ($transaction == 'cancel') {
-            $payment->status = 'canceled';
+                break;
+            case 'settlement':
+                $payment->status = 'paid'; // Pembayaran berhasil
+                $payment->paid_at = now(); // Set waktu pembayaran
+                break;
+            case 'pending':
+                $payment->status = 'pending'; // Pembayaran tertunda
+                break;
+            case 'deny':
+                $payment->status = 'denied'; // Pembayaran ditolak
+                break;
+            case 'expire':
+                $payment->status = 'expired'; // Pembayaran kadaluarsa
+                break;
+            case 'cancel':
+                $payment->status = 'canceled'; // Pembayaran dibatalkan
+                break;
         }
 
+        // Simpan perubahan status
         $payment->save();
+
+        // Mengembalikan respons sukses
         return response()->json(['status' => 'success']);
     }
 }
