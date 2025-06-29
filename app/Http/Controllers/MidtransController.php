@@ -57,14 +57,13 @@ class MidtransController extends Controller
             'expiry' => [
                 'start_time' => now()->format('Y-m-d H:i:s O'),
                 'unit' => 'hours',
-                'duration' => 24, // Kadaluarsa dalam 24 jam
+                'duration' => 2, // Kadaluarsa dalam 24 jam
             ],
             'callbacks' => [
                 'finish' => route('midtrans.callback')
             ]
         ];
 
-        // Generate Snap Token
         $snapToken = Snap::getSnapToken($params);
 
         // Update payment data
@@ -74,7 +73,7 @@ class MidtransController extends Controller
         ]);
 
         return view('pages.siswa.payment.checkout', [
-            'menu' => 'midtrans',
+            'menu' => 'checkout',
             'snapToken' => $snapToken,
             'payment' => $payment
         ]);

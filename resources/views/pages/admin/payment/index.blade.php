@@ -54,29 +54,53 @@
                                                         <td>
                                                             <button class="btn btn-success">{{ $payment->status }}</button>
                                                         </td>
-                                                    @else
+                                                        <td>
+                                                            <form action="{{ route('payment.hapus', $payment->id) }}" method="POST"
+                                                                class="d-inline">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="fas fa-trash"></i> Hapus
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    @elseif ($payment->status == 'pending')
                                                         <td>
                                                             <button class="btn btn-warning">{{ $payment->status }}</button>
                                                         </td>
+                                                        <td>
+                                                            <form action="{{ route('konfirmasi.pembayaran', $payment->id) }}"
+                                                                method="POST" class="d-inline">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="submit" class="btn btn-primary btn-sm">
+                                                                    <i class="fas fa-money-bill-wave"></i> Konfirmasi
+                                                                </button>
+                                                            </form>
+                                                            <form action="{{ route('payment.hapus', $payment->id) }}" method="POST"
+                                                                class="d-inline">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="fas fa-trash"></i> Hapus
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    @elseif ($payment->status == 'unpaid')
+                                                        <td>
+                                                            <button class="btn btn-danger">{{ $payment->status }}</button>
+                                                        </td>
+                                                        <td>
+                                                            <form action="{{ route('payment.hapus', $payment->id) }}" method="POST"
+                                                                class="d-inline">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                                    <i class="fas fa-trash"></i> Hapus
+                                                                </button>
+                                                            </form>
+                                                        </td>
                                                     @endif
-                                                    <td>
-                                                        <form action="{{ route('konfirmasi.pembayaran', $payment->id) }}"
-                                                            method="POST" class="d-inline">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <button type="submit" class="btn btn-primary btn-sm">
-                                                                <i class="fas fa-money-bill-wave"></i> Konfirmasi
-                                                            </button>
-                                                        </form>
-                                                        <form action="{{ route('payment.hapus', $payment->id) }}" method="POST"
-                                                            class="d-inline">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger btn-sm">
-                                                                <i class="fas fa-trash"></i> Hapus
-                                                            </button>
-                                                        </form>
-                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -144,7 +168,7 @@
                         text: '{{ session('error') }}',
                     });
                 @endif
-                                                                                                                                                                        });
+                                                                                                                                                                                                                });
         </script>
     @endpush
 @endsection

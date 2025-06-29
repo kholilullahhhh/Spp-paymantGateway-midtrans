@@ -57,7 +57,7 @@
                                                         @if ($payment->status == 'paid')
                                                             <span class="badge badge-success">Lunas</span>
                                                         @elseif($payment->status == 'pending')
-                                                            <span class="badge badge-warning">Menunggu</span>
+                                                            <span class="badge badge-warning">Pending</span>
                                                         @else
                                                             <span class="badge badge-danger">Belum Bayar</span>
                                                         @endif
@@ -70,7 +70,7 @@
                                                             </a>
                                                         @elseif($payment->status == 'pending')
                                                             <button class="btn btn-success btn-sm" disabled>
-                                                                <i class="fa fa-spinner"></i> Waiting
+                                                                <i class="fa fa-spinner"></i> Konfirmasi
                                                                 </button>
                                                         @else
                                                                 <button class="btn btn-success btn-sm" disabled>

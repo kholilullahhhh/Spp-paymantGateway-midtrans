@@ -229,7 +229,7 @@ Route::group(
                 Route::get('/callback', [MidtransController::class, 'callback'])->name('midtrans.callback');
                 Route::post('/notification', [MidtransController::class, 'notificationHandler'])->name('midtrans.notification');
             });
-
+            
         });
     }
 );
