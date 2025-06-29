@@ -155,7 +155,7 @@ Route::group(
                 Route::get('/edit/{id}', 'KelasController@edit')->name('kelas.edit');
                 Route::put('/update', 'KelasController@update')->name('kelas.update');
                 Route::delete('/hapus/{id}', 'KelasController@destroy')->name('kelas.hapus');
-        });
+            });
 
             // payment
             Route::prefix('payment')->group(function () {
@@ -229,7 +229,7 @@ Route::group(
                 Route::get('/callback', [MidtransController::class, 'callback'])->name('midtrans.callback');
                 Route::post('/notification', [MidtransController::class, 'notificationHandler'])->name('midtrans.notification');
             });
-            
+
         });
     }
 );
