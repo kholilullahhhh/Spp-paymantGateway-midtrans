@@ -14,50 +14,89 @@
 
             <div class="section-body">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-lg-8 offset-lg-2">
                         <form action="{{ route('spp.update', $data->id) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <input required type="hidden" name="id" value="{{ $data->id }}" class="form-control">
                             <div class="card">
+                                <div class="card-header">
+                                    <h4>Form Edit SPP</h4>
+                                </div>
                                 <div class="card-body">
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+
                                     <div class="form-group">
-                                        <label for="tahun">Tahun</label>
-                                        <input type="number" name="year" id="year"
-                                            value="{{ old('tahun', $data->tahun) }}"
-                                            class="form-control @error('year') is-invalid @enderror">
+                                        <label>Tahun</label>
+                                        <input type="number" name="year" class="form-control" required
+                                            value="{{ old('year', $data->year) }}">
                                         @error('year')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="invalid-feedback" style="display: block;">
+                                                {{ $message }}
+                                            </div>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="semester">Semester</label>
-                                        <select name="semester" id="semester"
-                                            class="form-control @error('semester') is-invalid @enderror">
+                                        <label>Bulan</label>
+                                        <select name="bulan" class="form-control selectric" required>
+                                            <option value="">-- Pilih Bulan --</option>
+                                            @php
+                                                $months = [
+                                                    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                                                    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                                                ];
+                                            @endphp
+                                            @foreach($months as $month)
+                                                <option value="{{ $month }}" {{ old('bulan', $data->bulan) == $month ? 'selected' : '' }}>
+                                                    {{ $month }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('bulan')
+                                            <div class="invalid-feedback" style="display: block;">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Semester</label>
+                                        <select name="semester" class="form-control selectric" required>
                                             <option value="">-- Pilih Semester --</option>
                                             <option value="ganjil" {{ old('semester', $data->semester) == 'ganjil' ? 'selected' : '' }}>Ganjil</option>
                                             <option value="genap" {{ old('semester', $data->semester) == 'genap' ? 'selected' : '' }}>Genap</option>
                                         </select>
                                         @error('semester')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="invalid-feedback" style="display: block;">
+                                                {{ $message }}
+                                            </div>
                                         @enderror
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="nominal">Nominal</label>
-                                        <input type="number" name="nominal" id="nominal"
-                                            value="{{ old('nominal', $data->nominal) }}"
-                                            class="form-control @error('nominal') is-invalid @enderror">
+                                        <label>Nominal SPP</label>
+                                        <input type="number" name="nominal" class="form-control" required
+                                            value="{{ old('nominal', $data->nominal) }}">
                                         @error('nominal')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="invalid-feedback" style="display: block;">
+                                                {{ $message }}
+                                            </div>
                                         @enderror
                                     </div>
                                 </div>
 
                                 <div class="card-footer text-right">
                                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                                    <a href="{{ route('spp.index') }}" class="btn btn-secondary">Kembali</a>
+                                    <a href="{{ route('spp.index') }}" class="btn btn-warning">Kembali</a>
                                 </div>
                             </div>
                         </form>
@@ -69,9 +108,16 @@
 
     @push('scripts')
         <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
+        <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
         <script>
-            $(document).ready(function () {
-                $('.select2').select2();
+            $(document).ready(function() {
+                // Initialize selectric
+                $('.selectric').selectric();
+                
+                // Format nominal input
+                $('input[name="nominal"]').on('keyup', function() {
+                    // You can add number formatting here if needed
+                });
             });
         </script>
     @endpush

@@ -26,6 +26,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Tahun</th>
+                                                <th>Bulan</th>
                                                 <th>Semester</th>
                                                 <th>Nominal</th>
                                                 <th>Action</th>
@@ -36,6 +37,7 @@
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
                                                     <td>{{ $spp->year }}</td>
+                                                    <td>{{ $spp->bulan }}</td>
                                                     <td>{{ ucfirst($spp->semester) }}</td>
                                                     <td>Rp {{ number_format($spp->nominal, 0, ',', '.') }}</td>
                                                     <td>
@@ -53,7 +55,6 @@
                                                                     <i class="fas fa-trash"></i> Hapus
                                                                 </button>
                                                             </form>
-
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -80,7 +81,7 @@
 
         <script>
             $(document).ready(function () {
-                $('#table-kelas').DataTable();
+                $('#table-spp').DataTable();
 
                 // SweetAlert for delete confirmation
                 $('.delete-btn').click(function (e) {
@@ -89,7 +90,7 @@
 
                     Swal.fire({
                         title: 'Apakah Anda yakin?',
-                        text: "Data kelas ini akan dihapus secara permanen!",
+                        text: "Data SPP ini akan dihapus secara permanen!",
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -123,7 +124,7 @@
                         text: '{{ session('error') }}',
                     });
                 @endif
-                                                                                        });
+            });
         </script>
     @endpush
 @endsection

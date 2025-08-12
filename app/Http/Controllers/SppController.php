@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SppPlan;
+use App\Models\user;
+use App\Models\payment;
 
 class SppController extends Controller
 {
@@ -33,14 +35,27 @@ class SppController extends Controller
      */
     public function store(Request $request)
     {
-
         $r = $request->all();
-        // dd($r);
 
-        // Menyimpan data guru
-        SppPlan::create($r);
+        // Menyimpan data SPP
+        $sppPlan = SppPlan::create($r);
 
-        return redirect()->route('spp.index')->with('message', 'Data guru berhasil ditambahkan.');
+        // Dapatkan semua siswa
+        $students = User::where('role', 'siswa')->get();
+
+        // Buat pembayaran untuk setiap siswa
+        foreach ($students as $student) {
+            Payment::create([
+                'siswa_id' => $student->id,
+                'spp_id' => $sppPlan->id,
+                'paid_year' => $sppPlan->year,
+                'amount' => $sppPlan->nominal,
+                'status' => 'unpaid', // Status awal unpaid
+                'paid_month' => $sppPlan->bulan,
+            ]);
+        }
+
+        return redirect()->route('spp.index')->with('message', 'Data Spp berhasil ditambahkan dan pembayaran telah dibuat untuk semua siswa.');
     }
 
 
@@ -66,7 +81,7 @@ class SppController extends Controller
         // dd($r);
         $data->update($r);
 
-        return redirect()->route('spp.index')->with('message', 'Data guru berhasil diperbarui.');
+        return redirect()->route('spp.index')->with('message', 'Data Spp berhasil diperbarui.');
     }
 
 
@@ -78,7 +93,7 @@ class SppController extends Controller
         $data = SppPlan::find($id);
         $data->delete();
 
-        return redirect()->route('spp.index')->with('message', 'Data guru berhasil dihapus.');
+        return redirect()->route('spp.index')->with('message', 'Data Spp berhasil dihapus.');
     }
 
 }

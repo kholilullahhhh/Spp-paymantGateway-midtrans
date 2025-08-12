@@ -4,6 +4,7 @@
     @push('styles')
         <link rel="stylesheet" href="{{ asset('library/datatables.net-bs4/css/dataTables.bootstrap4.min.css') }}">
         <link rel="stylesheet" href="{{ asset('library/datatables.net-select-bs4/css/select.bootstrap4.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
     @endpush
 
     <div class="main-content">
@@ -18,10 +19,22 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="mb-0">Daftar Pembayaran</h4>
-                                <div class="card-header-action">
-                                    <a href="{{ route('payment.create') }}" class="btn btn-primary">
-                                        <i class="bi bi-plus-lg"></i> Tambah Pembayaran
-                                    </a>
+                                <div class="card-header-action d-flex">
+                                    <div class="mr-3">
+                                        <select class="form-control select2" id="month-filter">
+                                            <option value="">Pilih Bulan</option>
+                                            @foreach(range(1, 12) as $month)
+                                                <option value="{{ $month }}" {{ request('month') == $month ? 'selected' : '' }}>
+                                                    {{ DateTime::createFromFormat('!m', $month)->format('F') }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <a href="{{ route('payment.create') }}" class="btn btn-primary">
+                                            <i class="bi bi-plus-lg"></i> Tambah Pembayaran
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -32,6 +45,7 @@
                                                 <th>ID</th>
                                                 <th>NISN</th>
                                                 <th>Nama Siswa</th>
+                                                <th>Bulan</th>
                                                 <th>Semester</th>
                                                 <th>Tahun</th>
                                                 <th>Jumlah</th>
@@ -41,66 +55,61 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($datas as $index => $payment)
+                                            @foreach ($datas as $payment)
                                                 <tr>
                                                     <td>{{ $payment->order_id }}</td>
                                                     <td>{{ $payment->siswa->nisn }}</td>
                                                     <td>{{ $payment->siswa->name }}</td>
+                                                    <td>
+                                                        @if($payment->paid_month)
+                                                            @php
+                                                                $monthName = DateTime::createFromFormat('!m', $payment->paid_month);
+                                                            @endphp
+                                                            {{ $monthName ? $monthName->format('F') : '-' }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
                                                     <td>{{ $payment->spp->semester }}</td>
                                                     <td>{{ $payment->paid_year }}</td>
-                                                    <td>{{ number_format($payment->amount, 0, ',', '.') }}</td>
-                                                    <td>{{ \Carbon\Carbon::parse($payment->paid_at)->format('d-m-Y') }}</td>
-                                                    @if ($payment->status == 'paid')
-                                                        <td>
-                                                            <button class="btn btn-success">{{ $payment->status }}</button>
-                                                        </td>
-                                                        <td>
-                                                            <form action="{{ route('payment.hapus', $payment->id) }}" method="POST"
-                                                                class="d-inline">
+                                                    <td>Rp {{ number_format($payment->amount, 0, ',', '.') }}</td>
+                                                    <td>
+                                                        @if($payment->paid_at)
+                                                            {{ \Carbon\Carbon::parse($payment->paid_at)->format('d-m-Y') }}
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if ($payment->status == 'paid')
+                                                            <span class="badge badge-success">{{ $payment->status }}</span>
+                                                        @elseif ($payment->status == 'pending')
+                                                            <span class="badge badge-warning">{{ $payment->status }}</span>
+                                                        @else
+                                                            <span class="badge badge-danger">{{ $payment->status }}</span>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            @if ($payment->status == 'pending')
+                                                                <form action="{{ route('konfirmasi.pembayaran', $payment->id) }}" method="POST" class="mr-1">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <button type="submit" class="btn btn-primary btn-sm" title="Konfirmasi">
+                                                                        <i class="fas fa-check"></i>
+                                                                    </button>
+                                                                </form>
+                                                            @endif
+                                                            
+                                                            <form action="{{ route('payment.hapus', $payment->id) }}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                                    <i class="fas fa-trash"></i> Hapus
+                                                                <button type="submit" class="btn btn-danger btn-sm delete-btn" title="Hapus">
+                                                                    <i class="fas fa-trash"></i>
                                                                 </button>
                                                             </form>
-                                                        </td>
-                                                    @elseif ($payment->status == 'pending')
-                                                        <td>
-                                                            <button class="btn btn-warning">{{ $payment->status }}</button>
-                                                        </td>
-                                                        <td>
-                                                            <form action="{{ route('konfirmasi.pembayaran', $payment->id) }}"
-                                                                method="POST" class="d-inline">
-                                                                @csrf
-                                                                @method('PUT')
-                                                                <button type="submit" class="btn btn-primary btn-sm">
-                                                                    <i class="fas fa-money-bill-wave"></i> Konfirmasi
-                                                                </button>
-                                                            </form>
-                                                            <form action="{{ route('payment.hapus', $payment->id) }}" method="POST"
-                                                                class="d-inline">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                                    <i class="fas fa-trash"></i> Hapus
-                                                                </button>
-                                                            </form>
-                                                        </td>
-                                                    @elseif ($payment->status == 'unpaid')
-                                                        <td>
-                                                            <button class="btn btn-danger">{{ $payment->status }}</button>
-                                                        </td>
-                                                        <td>
-                                                            <form action="{{ route('payment.hapus', $payment->id) }}" method="POST"
-                                                                class="d-inline">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                                    <i class="fas fa-trash"></i> Hapus
-                                                                </button>
-                                                            </form>
-                                                        </td>
-                                                    @endif
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -117,24 +126,42 @@
     @push('scripts')
         <!-- SweetAlert2 from CDN -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.18/dist/sweetalert2.all.min.js"></script>
-
         <!-- Other scripts -->
         <script src="{{ asset('library/datatables/media/js/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('library/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
         <script src="{{ asset('library/datatables.net-select-bs4/js/select.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
 
         <script>
             $(document).ready(function () {
-                $('#table-pembayaran').DataTable();
+                // Initialize Select2
+                $('.select2').select2();
+                
+                // Initialize DataTable
+                var table = $('#table-pembayaran').DataTable({
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
+                    }
+                });
+
+                // Month filter handler
+                $('#month-filter').change(function () {
+                    var month = $(this).val();
+                    if (month) {
+                        window.location.href = "{{ route('payment.index') }}?month=" + month;
+                    } else {
+                        window.location.href = "{{ route('payment.index') }}";
+                    }
+                });
 
                 // SweetAlert for delete confirmation
-                $('.delete-btn').click(function (e) {
+                $(document).on('click', '.delete-btn', function (e) {
                     e.preventDefault();
                     var form = $(this).closest('form');
 
                     Swal.fire({
                         title: 'Apakah Anda yakin?',
-                        text: "Data kelas ini akan dihapus secara permanen!",
+                        text: "Data pembayaran ini akan dihapus secara permanen!",
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
@@ -144,7 +171,7 @@
                         reverseButtons: true
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            form.submit();  // Submit the form if confirmed
+                            form.submit();
                         }
                     });
                 });
@@ -168,7 +195,7 @@
                         text: '{{ session('error') }}',
                     });
                 @endif
-                                                                                                                                                                                                                });
+            });
         </script>
     @endpush
 @endsection

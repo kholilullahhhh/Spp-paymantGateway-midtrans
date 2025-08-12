@@ -17,7 +17,7 @@
             </li>
 
             @if (session('role') == 'admin')
-                <li class="nav-item dropdown {{ $menu == 'siswa' || 'kelas' || 'spp' ? 'active' : '' }}">
+                <li class="nav-item dropdown {{ $menu == 'siswa' || $menu == 'kelas' || $menu == 'spp' ? 'active' : '' }}">
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-sitemap"></i>
                         <span>Master Data</span></a>
                     <ul class="dropdown-menu">

@@ -41,6 +41,34 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label>Bulan</label>
+                                        <select name="bulan" class="form-control selectric" required>
+                                            <option value="">-- Pilih Bulan --</option>
+                                            <option value="Januari" {{ old('bulan') == 'Januari' ? 'selected' : '' }}>Januari
+                                            </option>
+                                            <option value="Februari" {{ old('bulan') == 'Februari' ? 'selected' : '' }}>
+                                                Februari</option>
+                                            <option value="Maret" {{ old('bulan') == 'Maret' ? 'selected' : '' }}>Maret
+                                            </option>
+                                            <option value="April" {{ old('bulan') == 'April' ? 'selected' : '' }}>April
+                                            </option>
+                                            <option value="Mei" {{ old('bulan') == 'Mei' ? 'selected' : '' }}>Mei</option>
+                                            <option value="Juni" {{ old('bulan') == 'Juni' ? 'selected' : '' }}>Juni</option>
+                                            <option value="Juli" {{ old('bulan') == 'Juli' ? 'selected' : '' }}>Juli</option>
+                                            <option value="Agustus" {{ old('bulan') == 'Agustus' ? 'selected' : '' }}>Agustus
+                                            </option>
+                                            <option value="September" {{ old('bulan') == 'September' ? 'selected' : '' }}>
+                                                September</option>
+                                            <option value="Oktober" {{ old('bulan') == 'Oktober' ? 'selected' : '' }}>Oktober
+                                            </option>
+                                            <option value="November" {{ old('bulan') == 'November' ? 'selected' : '' }}>
+                                                November</option>
+                                            <option value="Desember" {{ old('bulan') == 'Desember' ? 'selected' : '' }}>
+                                                Desember</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label>Semester</label>
                                         <select name="semester" class="form-control selectric" required>
                                             <option value="">-- Pilih Semester --</option>

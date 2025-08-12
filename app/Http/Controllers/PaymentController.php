@@ -11,9 +11,16 @@ use App\Models\SppPlan;
 class PaymentController extends Controller
 {
     private $menu = 'payment';
-    public function index()
+    public function index(Request $request)
     {
-        $datas = Payment::with(['siswa', 'spp'])->latest()->get();
+        $query = Payment::with(['siswa', 'spp'])->latest();
+
+        // Filter by month if provided
+        if ($request->has('month') && $request->month != '') {
+            $query->where('paid_month', $request->month);
+        }
+
+        $datas = $query->get();
         $menu = $this->menu;
 
         return view('pages.admin.payment.index', compact('menu', 'datas'));
