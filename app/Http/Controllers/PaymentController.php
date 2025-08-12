@@ -15,9 +15,8 @@ class PaymentController extends Controller
     {
         $query = Payment::with(['siswa', 'spp'])->latest();
 
-        // Filter by month if provided
-        if ($request->has('month') && $request->month != '') {
-            $query->where('paid_month', $request->month);
+        if ($request->filled('month')) {
+            $query->where('paid_month', intval($request->month));
         }
 
         $datas = $query->get();
@@ -25,6 +24,7 @@ class PaymentController extends Controller
 
         return view('pages.admin.payment.index', compact('menu', 'datas'));
     }
+
     public function create()
     {
         $siswa = User::where('role', 'siswa')->get();

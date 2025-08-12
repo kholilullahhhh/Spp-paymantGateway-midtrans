@@ -60,16 +60,7 @@
                                                     <td>{{ $payment->order_id }}</td>
                                                     <td>{{ $payment->siswa->nisn }}</td>
                                                     <td>{{ $payment->siswa->name }}</td>
-                                                    <td>
-                                                        @if($payment->paid_month)
-                                                            @php
-                                                                $monthName = DateTime::createFromFormat('!m', $payment->paid_month);
-                                                            @endphp
-                                                            {{ $monthName ? $monthName->format('F') : '-' }}
-                                                        @else
-                                                            -
-                                                        @endif
-                                                    </td>
+                                                    <td>{{ $payment->paid_month}}</td>
                                                     <td>{{ $payment->spp->semester }}</td>
                                                     <td>{{ $payment->paid_year }}</td>
                                                     <td>Rp {{ number_format($payment->amount, 0, ',', '.') }}</td>
