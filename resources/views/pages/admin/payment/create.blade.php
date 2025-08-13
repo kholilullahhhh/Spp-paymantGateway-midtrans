@@ -86,16 +86,26 @@
                                             <label>Bulan Pembayaran</label>
                                             <select name="paid_month" class="form-control" required>
                                                 <option value="">Pilih Bulan</option>
-                                                @foreach(['January'=>'Januari', 'February'=>'Februari', 'March'=>'Maret', 
-                                                        'April'=>'April', 'May'=>'Mei', 'June'=>'Juni',
-                                                        'July'=>'Juli', 'August'=>'Agustus', 'September'=>'September',
-                                                        'October'=>'Oktober', 'November'=>'November', 'December'=>'Desember'] as $value => $label)
+                                                @foreach([
+                                                    1 => 'Januari', 
+                                                    2 => 'Februari', 
+                                                    3 => 'Maret', 
+                                                    4 => 'April', 
+                                                    5 => 'Mei', 
+                                                    6 => 'Juni',
+                                                    7 => 'Juli', 
+                                                    8 => 'Agustus', 
+                                                    9 => 'September',
+                                                    10 => 'Oktober', 
+                                                    11 => 'November', 
+                                                    12 => 'Desember'
+                                                ] as $value => $label)
                                                     <option value="{{ $value }}" {{ old('paid_month') == $value ? 'selected' : '' }}>
                                                         {{ $label }}
                                                     </option>
                                                 @endforeach
                                             </select>
-                                        </div>
+    </div>
                                         
                                         <div class="form-group col-md-4">
                                             <label>Semester</label>
@@ -136,6 +146,7 @@
 @endsection
 
 @push('styles')
+        <link rel="stylesheet" href="{{ asset('library/summernote/dist/summernote-bs4.css') }}">
     <link rel="stylesheet" href="{{ asset('library/select2/dist/css/select2.min.css') }}">
     <style>
         .card {
@@ -169,6 +180,8 @@
 @endpush
 
 @push('scripts')
+        <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
+        <script src="{{ asset('library/summernote/dist/summernote-bs4.js') }}"></script>
     <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
     <script>
         $(document).ready(function() {

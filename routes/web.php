@@ -164,7 +164,9 @@ Route::group(
                 Route::post('/store', 'PaymentController@store')->name('payment.store');
                 Route::delete('/hapus/{id}', 'PaymentController@destroy')->name('payment.hapus');
                 Route::put('/konformasi/{id}', 'PaymentController@konfirmasi')->name('konfirmasi.pembayaran');
-
+                Route::post('/transaksi/export-pdf', 'PaymentController@exportPdf')->name('payment.export.pdf');
+                // Route::get('/transaksi/export-pdf', [TransaksiController::class, 'exportPdf'])->name('transaksi.export.pdf');
+    
 
             });
 

@@ -51,13 +51,23 @@
                                             <option value="">-- Pilih Bulan --</option>
                                             @php
                                                 $months = [
-                                                    'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-                                                    'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+                                                    1 => 'Januari',
+                                                    2 => 'Februari',
+                                                    3 => 'Maret',
+                                                    4 => 'April',
+                                                    5 => 'Mei',
+                                                    6 => 'Juni',
+                                                    7 => 'Juli',
+                                                    8 => 'Agustus',
+                                                    9 => 'September',
+                                                    10 => 'Oktober',
+                                                    11 => 'November',
+                                                    12 => 'Desember'
                                                 ];
                                             @endphp
-                                            @foreach($months as $month)
-                                                <option value="{{ $month }}" {{ old('bulan', $data->bulan) == $month ? 'selected' : '' }}>
-                                                    {{ $month }}
+                                            @foreach($months as $num => $name)
+                                                <option value="{{ $num }}" {{ old('bulan', $data->bulan) == $num ? 'selected' : '' }}>
+                                                    {{ $name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -110,12 +120,12 @@
         <script src="{{ asset('library/select2/dist/js/select2.full.min.js') }}"></script>
         <script src="{{ asset('library/selectric/public/jquery.selectric.min.js') }}"></script>
         <script>
-            $(document).ready(function() {
+            $(document).ready(function () {
                 // Initialize selectric
                 $('.selectric').selectric();
-                
+
                 // Format nominal input
-                $('input[name="nominal"]').on('keyup', function() {
+                $('input[name="nominal"]').on('keyup', function () {
                     // You can add number formatting here if needed
                 });
             });

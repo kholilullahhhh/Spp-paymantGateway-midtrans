@@ -37,7 +37,7 @@
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
                                                     <td>{{ $spp->year }}</td>
-                                                    <td>{{ $spp->bulan }}</td>
+                                                    <td>{{ \Carbon\Carbon::create()->month($spp->bulan)->translatedFormat('F') }}</td>
                                                     <td>{{ ucfirst($spp->semester) }}</td>
                                                     <td>Rp {{ number_format($spp->nominal, 0, ',', '.') }}</td>
                                                     <td>

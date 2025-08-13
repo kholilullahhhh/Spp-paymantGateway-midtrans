@@ -44,29 +44,21 @@
                                         <label>Bulan</label>
                                         <select name="bulan" class="form-control selectric" required>
                                             <option value="">-- Pilih Bulan --</option>
-                                            <option value="Januari" {{ old('bulan') == 'Januari' ? 'selected' : '' }}>Januari
-                                            </option>
-                                            <option value="Februari" {{ old('bulan') == 'Februari' ? 'selected' : '' }}>
-                                                Februari</option>
-                                            <option value="Maret" {{ old('bulan') == 'Maret' ? 'selected' : '' }}>Maret
-                                            </option>
-                                            <option value="April" {{ old('bulan') == 'April' ? 'selected' : '' }}>April
-                                            </option>
-                                            <option value="Mei" {{ old('bulan') == 'Mei' ? 'selected' : '' }}>Mei</option>
-                                            <option value="Juni" {{ old('bulan') == 'Juni' ? 'selected' : '' }}>Juni</option>
-                                            <option value="Juli" {{ old('bulan') == 'Juli' ? 'selected' : '' }}>Juli</option>
-                                            <option value="Agustus" {{ old('bulan') == 'Agustus' ? 'selected' : '' }}>Agustus
-                                            </option>
-                                            <option value="September" {{ old('bulan') == 'September' ? 'selected' : '' }}>
-                                                September</option>
-                                            <option value="Oktober" {{ old('bulan') == 'Oktober' ? 'selected' : '' }}>Oktober
-                                            </option>
-                                            <option value="November" {{ old('bulan') == 'November' ? 'selected' : '' }}>
-                                                November</option>
-                                            <option value="Desember" {{ old('bulan') == 'Desember' ? 'selected' : '' }}>
-                                                Desember</option>
+                                            <option value="1" {{ old('bulan') == 1 ? 'selected' : '' }}>Januari</option>
+                                            <option value="2" {{ old('bulan') == 2 ? 'selected' : '' }}>Februari</option>
+                                            <option value="3" {{ old('bulan') == 3 ? 'selected' : '' }}>Maret</option>
+                                            <option value="4" {{ old('bulan') == 4 ? 'selected' : '' }}>April</option>
+                                            <option value="5" {{ old('bulan') == 5 ? 'selected' : '' }}>Mei</option>
+                                            <option value="6" {{ old('bulan') == 6 ? 'selected' : '' }}>Juni</option>
+                                            <option value="7" {{ old('bulan') == 7 ? 'selected' : '' }}>Juli</option>
+                                            <option value="8" {{ old('bulan') == 8 ? 'selected' : '' }}>Agustus</option>
+                                            <option value="9" {{ old('bulan') == 9 ? 'selected' : '' }}>September</option>
+                                            <option value="10" {{ old('bulan') == 10 ? 'selected' : '' }}>Oktober</option>
+                                            <option value="11" {{ old('bulan') == 11 ? 'selected' : '' }}>November</option>
+                                            <option value="12" {{ old('bulan') == 12 ? 'selected' : '' }}>Desember</option>
                                         </select>
                                     </div>
+
 
                                     <div class="form-group">
                                         <label>Semester</label>

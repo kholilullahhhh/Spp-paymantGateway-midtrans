@@ -58,7 +58,7 @@ class SiswaController extends Controller
             Admin::create($r);
             User::create($r);
 
-            return redirect()->route('siswa.index')->with('message', 'store');
+            return redirect()->route('siswa.index')->with('message', 'Data Siswa Berhasil Di Tambahkan');
         } else {
             return redirect()->route('siswa.index')->with('message', 'username sudah ada');
         }
