@@ -250,7 +250,7 @@
                                     </div>
                                     <div>
                                         <div class="card-label">Pembayaran Belum Lunas</div>
-                                        <div class="card-value">{{ $unpaidngPayments }}</div>
+                                        <div class="card-value">{{ $unpaidPayments  }}</div>
                                     </div>
                                 </div>
                                 <div class="mt-3 text-right">
@@ -319,7 +319,7 @@
                                         <i class="fas fa-circle text-warning"></i> Tertunda ({{ $pendingPayments }}%)
                                     </span>
                                     <span>
-                                        <i class="fas fa-circle text-danger"></i> Belum Bayar ({{ $unpaidngPayments }}%)
+                                        <i class="fas fa-circle text-danger"></i> Belum Bayar ({{ $unpaidPayments  }}%)
                                     </span>
                                 </div>
                             </div>
@@ -354,7 +354,7 @@
                                                     <h6 class="font-weight-bold mb-0">{{ $payment->siswa->name }}</h6>
                                                 </div>
                                                 <small class="text-muted">
-                                                    <i class="bi bi-calendar"></i> {{ $payment->paid_month }} {{ $payment->paid_year }} • 
+                                                    <i class="bi bi-calendar"></i> {{ $payment->paid_month }} {{ $payment->paid_year }} •
                                                     <i class="bi bi-cash"></i> Rp {{ number_format($payment->amount, 0, ',', '.') }}
                                                 </small>
                                             </div>
@@ -396,9 +396,9 @@
                                         </div>
                                         <div class="progress progress-thin">
                                             <div class="progress-bar bg-success" role="progressbar"
-                                                style="width: {{ $class->percentage }}%" 
+                                                style="width: {{ $class->percentage }}%"
                                                 aria-valuenow="{{ $class->percentage }}"
-                                                aria-valuemin="0" 
+                                                aria-valuemin="0"
                                                 aria-valuemax="100">
                                             </div>
                                         </div>
@@ -486,7 +486,7 @@
             paymentChart.render();
 
             var paymentStatusChart = new ApexCharts(document.querySelector("#paymentStatusChart"), {
-                series: [{{ $paidPayments }}, {{ $pendingPayments }}, {{ $unpaidngPayments }}],
+                series: [{{ $paidPayments }}, {{ $pendingPayments }}, {{ $unpaidPayments  }}],
                 chart: {
                     type: 'donut',
                     height: 350

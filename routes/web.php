@@ -19,24 +19,23 @@ Route::group(
     function () {
         Route::redirect('/', '/');
         // Dashboard
-    
+
         //         Route::get(
         //             '/',
         //             function () {
         //                 return view('pages.landing.index');
         //             }
         //         )->name('user.index');
-    
+
         // Route::get(
         //     '/',
         //     function () {
         //         return view('pages.landing.index');
         //     }
         // )->name('user.index');
-    
+
         Route::get('/', 'UserController@index')->name('user.index');
         Route::get('/kontak', 'UserController@kontak')->name('user.kontak');
-        Route::get('/eksternal', 'UserController@guru')->name('user.guru');
 
         Route::get('/detail/{jenis}/{id}', 'UserController@detail')->name('user.detail.post');
 
@@ -54,34 +53,7 @@ Route::group(
         Route::get('/api/statistics/activities/{month}', 'UserController@getActivitiesByMonth')->name('user.statistik.month');
         Route::get('/api/statistics/activity/{activityId}/{participantType}', 'UserController@getActivityStatistics')->name('user.statistik.activity');
 
-        Route::get('/eksternal', 'UserController@guru')->name('user.guru');
-        Route::get('/eksternal/form/{jenis}', 'UserController@form_guru')->name('user.form_guru');
-        Route::post('/eksternal/daftar', 'UserController@daftar_guru')->name('user.daftar_guru');
 
-        Route::get('/kegiatan', 'KegiatanController@index')->name('user.kegiatan');
-        Route::get('/kegiatan/cari', 'KegiatanController@cari')->name('user.cari');
-
-        Route::get('/kegiatan/registrasi', 'KegiatanController@regist')->name('user.kegiatan_regist');
-        Route::post('/kegiatan/store', 'KegiatanController@store')->name('user.kegiatan_store');
-
-        // response json
-        Route::get('/kegiatan/getStatus', 'KegiatanController@getStatus')->name('user.kegiatan.getStatus');
-        Route::get('/kegiatan/cariPeserta', 'KegiatanController@cariPeserta')->name('user.kegiatan.cariPeserta');
-        Route::get('/kegiatan/peserta', 'KegiatanController@getPesertaByKegiatan')->name('user.kegiatan.peserta');
-        Route::get('/peserta/detail', 'KegiatanController@getPesertaDetail')->name('user.peserta.detail');
-
-        // trace pesrta dari kegiatan sebelum nya
-        Route::get('/peserta/cekData', 'KegiatanController@cekDataPeserta')->name('user.peserta.cekData');
-
-        Route::get('/print/absensi-peserta', 'KegiatanController@printAbsensiPeserta')->name('print.absensi.peserta');
-        Route::get('/print/registrasi-peserta', 'KegiatanController@fprintRegistrasiPeserta')->name('print.registrasi.peserta');
-        Route::get('/print/absensi-panitia', 'KegiatanController@printAbsensiPanitia')->name('print.absensi.panitia');
-        Route::get('/print/absensi-narasumber', 'KegiatanController@printAbsensiNarasumber')->name('print.absensi.narasumber');
-
-        Route::get('/print/absensi-tp', 'KegiatanController@printAbsensiTp')->name('print.absensi.tp');
-        Route::get('/print/absensi-tkp', 'KegiatanController@printAbsensiTkp')->name('print.absensi.tkp');
-        Route::get('/print/absensi-stk', 'KegiatanController@printAbsensiStk')->name('print.absensi.stk');
-        Route::get('/print/absensi-pgw', 'KegiatanController@printAbsensiPgw')->name('print.absensi.pgw');
     }
 );
 
@@ -123,7 +95,6 @@ Route::group(
             Route::get('/profile/{id}', 'AdminController@profile')->name('profile.index');
             Route::put('/profile/update', 'AdminController@profile_update')->name('profile.update');
 
-            Route::get('/fetch-sekolah', ['GuruController@index', 'fetchSekolah'])->name('fetchSekolah');
 
 
             // Siswa
@@ -166,7 +137,7 @@ Route::group(
                 Route::put('/konformasi/{id}', 'PaymentController@konfirmasi')->name('konfirmasi.pembayaran');
                 Route::post('/transaksi/export-pdf', 'PaymentController@exportPdf')->name('payment.export.pdf');
                 // Route::get('/transaksi/export-pdf', [TransaksiController::class, 'exportPdf'])->name('transaksi.export.pdf');
-    
+
 
             });
 

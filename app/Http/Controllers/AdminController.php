@@ -61,7 +61,9 @@ class AdminController extends Controller
                 ->sum('amount'),
             'paidPayments' => Payment::where('status', 'paid')->whereYear('paid_at', $selectedYear)->count(),
             'pendingPayments' => Payment::where('status', 'pending')->whereYear('paid_at', $selectedYear)->count(),
-            'unpaidngPayments' => Payment::where('status', 'unpaid')->whereYear('paid_at', $selectedYear)->count(),
+           'unpaidPayments' => Payment::where('status', 'unpaid')
+                ->whereYear('created_at', $selectedYear)
+                ->count(),
             'monthlyPayments' => $monthlyPayments,
             'paidPercentage' => $this->getPaymentPercentage('paid'),
             'pendingPercentage' => $this->getPaymentPercentage('pending'),

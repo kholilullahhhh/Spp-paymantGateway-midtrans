@@ -188,8 +188,8 @@
                                                                 <span class="status-badge badge-paid">Lunas</span>
                                                             @elseif ($payment->status == 'pending')
                                                                 <span class="status-badge badge-pending">Menunggu</span>
-                                                            @else
-                                                                <span class="status-badge badge-failed">Gagal</span>
+                                                           @elseif ($payment->status == 'unpaid')
+                                                                <span class="status-badge badge-failed">Belum</span>
                                                             @endif
                                                         </td>
                                                         <td>

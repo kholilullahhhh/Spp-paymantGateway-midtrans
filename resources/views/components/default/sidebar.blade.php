@@ -4,7 +4,7 @@
             <a href="{{route('dashboard') }}">SMK TRIDHARMA MAROS</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="{{route('dashboard') }}">SMK TRIDHARMA MAROS</a>
+            <a href="{{route('dashboard')}}">STM</a>
         </div>
 
         <ul class="sidebar-menu">
@@ -55,18 +55,18 @@
                 </li>
 
                 <li class="menu-header">Landing Page</li>
-                
+
             @endif
 
             @if (session('role') == 'siswa')
 
                 <li class="{{ $menu == 'midtrans' ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('midtrans.index') }}">
-                        <i class="fas fa-wallet"></i> <span>Data Transaksi</span>
+                        <i class="fas fa-wallet"></i> <span>Pembayaran SPP</span>
                     </a>
                 </li>
                 <li class="menu-header">Landing Page</li>
-                
+
             @endif
         </ul>
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

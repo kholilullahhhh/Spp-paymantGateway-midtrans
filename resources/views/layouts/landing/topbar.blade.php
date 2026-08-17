@@ -6,7 +6,7 @@
                 <div class="row align-items-center">
                     <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
                         <a class="d-block" href="/">
-                            <img style="width:auto; height:80px" 
+                            <img style="width:auto; height:80px"
                                 src="{{ asset('landing/images/footer/rpph.jpg') }}" alt="BBGP SulSel">
                         </a>
                     </div><!-- logo end -->
@@ -67,18 +67,13 @@
                                 <!-- <li class="nav-item {{ $menu == 'data' ? 'active' : '' }} dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Data <i
                                             class="fa fa-angle-down"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ route('user.pegawai') }}">Data Internal</a></li>
-                                        <li><a href="{{ route('user.guru') }}">Data Eksternal</a></li>
-                                    </ul>
+
                                 </li> -->
 
                                 <li class="nav-item {{ $menu == 'kontak' ? 'active' : '' }}"><a class="nav-link" href="{{ route('user.kontak') }} ">Kontak</a></li>
 
-                                <!-- <li class="nav-item {{ $menu == 'kegiatan' ? 'active' : '' }}"><a class="nav-link" href="{{ route('user.kegiatan') }}">Kegiatan</a></li> -->
-                                
-                                <!-- <li class="nav-item {{ $menu == 'statistik' ? 'active' : '' }}"><a class="nav-link" href="{{ route('user.statistik') }}">Statistik</a></li> -->
-                                
+
+
                                 <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
 
 

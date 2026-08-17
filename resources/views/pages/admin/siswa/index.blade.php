@@ -21,6 +21,13 @@
             .btn-action i {
                 margin-right: 0.25rem;
             }
+            /* Biar kolom Kelas & Jurusan tidak turun */
+            .kelas-column {
+                min-width: 100px; /* bisa disesuaikan */
+            }
+            .alamat-column {
+                min-width: 150px; /* bisa disesuaikan */
+            }
         </style>
     @endpush
 
@@ -54,10 +61,10 @@
                                                 <th>#</th>
                                                 <th>Nama</th>
                                                 <th>Username</th>
-                                                <th>Kelas</th>
+                                                <th class="kelas-column">Kelas & Jurusan</th>
                                                 <th>NISN</th>
                                                 <th>NIS</th>
-                                                <th>Alamat</th>
+                                                <th class="alamat-column">Alamat</th>
                                                 <th>No Handphone</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -68,7 +75,16 @@
                                                     <td>{{ $index + 1 }}</td>
                                                     <td>{{ $siswa->name }}</td>
                                                     <td>{{ $siswa->username }}</td>
-                                                    <td>{{ $siswa->class->name ?? '-' }}</td>
+                                                    <td>
+                                                        @if($siswa->class)
+                                                            {{ $siswa->class->name }}
+                                                            @if($siswa->class->jurusan)
+                                                                - {{ $siswa->class->jurusan }}
+                                                            @endif
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </td>
                                                     <td>{{ $siswa->nisn }}</td>
                                                     <td>{{ $siswa->nis }}</td>
                                                     <td>{{ $siswa->address ?? '-' }}</td>
@@ -79,16 +95,15 @@
                                                                 class="btn btn-warning btn-action">
                                                                 <i class="fas fa-edit"></i> Edit
                                                             </a>
-                                                            <form action="{{ route('siswa.hapus', $siswa->id) }}" method="POST"
-                                                                class="d-inline delete-form">
+                                                            <form action="{{ route('siswa.hapus', $siswa->id) }}"
+                                                                method="POST" class="d-inline delete-form">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="button"
+                                                                <button type="submit"
                                                                     class="btn btn-danger btn-action delete-btn">
                                                                     <i class="fas fa-trash"></i> Hapus
                                                                 </button>
                                                             </form>
-
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -158,9 +173,7 @@
                         text: '{{ session('error') }}',
                     });
                 @endif
-                                });
+            });
         </script>
     @endpush
-
-
 @endsection

@@ -32,7 +32,7 @@
 
                                 <form action="{{ route('payment.store') }}" method="POST" class="needs-validation" novalidate>
                                     @csrf
-                                    
+
                                     <div class="form-row">
                                         <!-- Student Info -->
                                         <div class="form-group col-md-6">
@@ -40,10 +40,10 @@
                                             <select class="form-control select2" name="siswa_id" id="nisn-select" required>
                                                 <option value="">Cari berdasarkan NISN</option>
                                                 @foreach ($siswa as $student)
-                                                    <option value="{{ $student->id }}" 
+                                                    <option value="{{ $student->id }}"
                                                         data-nama="{{ $student->name }}"
                                                         {{ old('siswa_id') == $student->id ? 'selected' : '' }}>
-                                                        {{ $student->nisn }}
+                                                        {{ $student->nisn }} - {{ $student->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -87,17 +87,17 @@
                                             <select name="paid_month" class="form-control" required>
                                                 <option value="">Pilih Bulan</option>
                                                 @foreach([
-                                                    1 => 'Januari', 
-                                                    2 => 'Februari', 
-                                                    3 => 'Maret', 
-                                                    4 => 'April', 
-                                                    5 => 'Mei', 
+                                                    1 => 'Januari',
+                                                    2 => 'Februari',
+                                                    3 => 'Maret',
+                                                    4 => 'April',
+                                                    5 => 'Mei',
                                                     6 => 'Juni',
-                                                    7 => 'Juli', 
-                                                    8 => 'Agustus', 
+                                                    7 => 'Juli',
+                                                    8 => 'Agustus',
                                                     9 => 'September',
-                                                    10 => 'Oktober', 
-                                                    11 => 'November', 
+                                                    10 => 'Oktober',
+                                                    11 => 'November',
                                                     12 => 'Desember'
                                                 ] as $value => $label)
                                                     <option value="{{ $value }}" {{ old('paid_month') == $value ? 'selected' : '' }}>
@@ -106,12 +106,12 @@
                                                 @endforeach
                                             </select>
     </div>
-                                        
+
                                         <div class="form-group col-md-4">
                                             <label>Semester</label>
                                             <input type="text" id="semester-input" class="form-control bg-light" readonly>
                                         </div>
-                                        
+
                                         <div class="form-group col-md-4">
                                             <label>Status</label>
                                             <select name="status" class="form-control" required>
