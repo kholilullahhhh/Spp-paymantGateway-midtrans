@@ -58,6 +58,21 @@
 
             @endif
 
+            @if (in_array(session('role'), ['admin', 'tu']))
+                <li class="nav-item dropdown {{ $menu == 'laporan' ? 'active' : '' }}">
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-chart-pie"></i>
+                        <span>Laporan</span></a>
+                    <ul class="dropdown-menu">
+                        <li class="{{ $menu == 'laporan' ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ route('laporan.spp') }}">
+                                Rekapitulasi SPP
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-header">Landing Page</li>
+            @endif
+
             @if (session('role') == 'siswa')
 
                 <li class="{{ $menu == 'midtrans' ? 'active' : '' }}">

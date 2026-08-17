@@ -203,6 +203,13 @@ Route::group(
                 Route::post('/notification', [MidtransController::class, 'notificationHandler'])->name('midtrans.notification');
             });
 
+            // Rekapitulasi Dana & Laporan SPP (khusus Admin & TU, dicek juga di controller)
+            Route::prefix('laporan')->group(function () {
+                Route::get('/spp', 'LaporanSppController@index')->name('laporan.spp');
+                Route::get('/spp/export/excel', 'LaporanSppController@exportExcel')->name('laporan.spp.excel');
+                Route::get('/spp/export/pdf', 'LaporanSppController@exportPdf')->name('laporan.spp.pdf');
+            });
+
         });
     }
 );

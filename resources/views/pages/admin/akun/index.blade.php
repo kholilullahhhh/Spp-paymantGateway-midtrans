@@ -58,6 +58,7 @@
                                                                     class="form-control selectric">
                                                                     <option value="">-- Pilih Role Akun --</option>
                                                                     <option value="siswa">Siswa</option>
+                                                                    <option value="tu">Tata Usaha (TU)</option>
                                                                     <option value="admin">Admin</option>
                                                                 </select>
                                                             </div>

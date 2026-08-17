@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Agenda;
-use App\Models\LatarJabatan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,14 +13,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        $this->call(AdminSeeder::class);
-        // $this->call(AgendaSeeder::class);
-        // $this->call(ModulSeeder::class);
+        $this->call([
+            AdminSeeder::class,
+            ClassesSeeder::class,
+            SppPlanSeeder::class,
+            UserSeeder::class,
+            PaymentSeeder::class,
+        ]);
     }
 }

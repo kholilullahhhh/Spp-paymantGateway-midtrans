@@ -58,8 +58,10 @@
                                                 <select name="role" required placeholder="Masukkan Akun"
                                                     class="form-control">
                                                     <option value="">-- Pilih Role Akun --</option>
-                                                    <option {{ $datas->role == 'guru' ? 'selected' : '' }}
+                                                    <option {{ $datas->role == 'siswa' ? 'selected' : '' }}
                                                         value="siswa">Siswa</option>
+                                                    <option {{ $datas->role == 'tu' ? 'selected' : '' }}
+                                                        value="tu">Tata Usaha (TU)</option>
                                                     <option {{ $datas->role == 'admin' ? 'selected' : '' }}
                                                         value="admin">Admin</option>
                                                 </select>
